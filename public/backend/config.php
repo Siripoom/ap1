@@ -3,7 +3,7 @@ class config
 {
   private $HOST = '127.0.0.1';
   private $USER = 'root';
-  private $PASS = '';
+  private $PASS = 'root123';
   private $DB = 'acadamicdb';
   public $CON;
 
@@ -16,4 +16,3 @@ class config
     }
   }
 }
-?>

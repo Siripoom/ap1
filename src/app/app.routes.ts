@@ -25,41 +25,83 @@ import { GradeFinalComponent } from './boxEvaluator/gradeFinal/grade-final.compo
 import { TestComponent } from './boxDeveloper/test/test.component';
 import { ManageWelcomeComponent } from './boxDeveloper/manage-welcome/manage-welcome.component';
 import { SetEvaluatorComponent } from './boxDeveloper/set-evaluator/set-evaluator.component';
+import { ScoreDashboardComponent } from './boxDeveloper/score-dashboard/score-dashboard.component';
 
 export const routes: Routes = [
-    { path: '', component:HomeVisitorComponent, pathMatch:'full' },
+  { path: '', component: HomeVisitorComponent, pathMatch: 'full' },
 
-    // User
-    { path: 'home', component:HomeComponent, canActivate:[userGuard] },
-    { path: 'contact', component:ContactComponent, canActivate:[userGuard] },
-    { path: 'allPaper', component:AllPaperComponent, canActivate:[userGuard] },
-    { path: 'myPaper', component:MyPaperComponent, canActivate:[userGuard] },
-    { path: 'award', component:AwardComponent, canActivate:[userGuard] },
-    { path: 'user', component:UserComponent, canActivate:[userGuard] },
-    { path: 'paper', component:PaperComponent, canActivate:[userGuard] },
-    { path: 'paper-eva', component:PaperComponent, canActivate:[userGuard] },
-    { path: 'certificate', component:CertificateComponent, canActivate:[userGuard] },
+  // User
+  { path: 'home', component: HomeComponent, canActivate: [userGuard] },
+  { path: 'contact', component: ContactComponent, canActivate: [userGuard] },
+  { path: 'allPaper', component: AllPaperComponent, canActivate: [userGuard] },
+  { path: 'myPaper', component: MyPaperComponent, canActivate: [userGuard] },
+  { path: 'award', component: AwardComponent, canActivate: [userGuard] },
+  { path: 'user', component: UserComponent, canActivate: [userGuard] },
+  { path: 'paper', component: PaperComponent, canActivate: [userGuard] },
+  { path: 'paper-eva', component: PaperComponent, canActivate: [userGuard] },
+  {
+    path: 'certificate',
+    component: CertificateComponent,
+    canActivate: [userGuard],
+  },
 
-    // Register
-    { path: 'register', component:RegisterComponent, canActivate:[registerGuard] },
+  // Register
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [registerGuard],
+  },
 
-    // Evaluator
-    { path: 'sended', component:SendedComponent, canActivate:[evaluatorGuard] },
-    { path: 'grade', component:GradeComponent, canActivate:[evaluatorGuard] },
-    { path: 'gradeFinal', component:GradeFinalComponent, canActivate:[evaluatorGuard] },
+  // Evaluator
+  { path: 'sended', component: SendedComponent, canActivate: [evaluatorGuard] },
+  { path: 'grade', component: GradeComponent, canActivate: [evaluatorGuard] },
+  {
+    path: 'gradeFinal',
+    component: GradeFinalComponent,
+    canActivate: [evaluatorGuard],
+  },
 
-    // Developer
-    { path: 'user', component:UserComponent, canActivate:[developerGuard] },
-    { path: 'contactMassage', component:ContactMassageComponent, canActivate:[developerGuard] },
-    { path: 'manageWelcome', component:ManageWelcomeComponent, canActivate:[developerGuard] },
-    { path: 'setEvaluator', component:SetEvaluatorComponent, canActivate:[developerGuard] },
+  // Developer
+  { path: 'user', component: UserComponent, canActivate: [developerGuard] },
+  {
+    path: 'contactMassage',
+    component: ContactMassageComponent,
+    canActivate: [developerGuard],
+  },
+  {
+    path: 'manageWelcome',
+    component: ManageWelcomeComponent,
+    canActivate: [developerGuard],
+  },
+  {
+    path: 'scoreDashboard',
+    component: ScoreDashboardComponent,
+    canActivate: [developerGuard],
+  },
+  {
+    path: 'setEvaluator',
+    component: SetEvaluatorComponent,
+    canActivate: [developerGuard],
+  },
 
-    // Visitor
-    { path: 'home-visitor', component:HomeVisitorComponent, canActivate:[visitorGuard] },
-    { path: 'callForPaper-visitor', component:CallForPaperComponent, canActivate:[visitorGuard] },
-    { path: 'contact-visitor', component:ContactVisitorComponent, canActivate:[visitorGuard] },
-    { path: 'signin', component:SigninComponent, canActivate:[visitorGuard] },
-    { path: 'signup', component:SignupComponent, canActivate:[visitorGuard] },
+  // Visitor
+  {
+    path: 'home-visitor',
+    component: HomeVisitorComponent,
+    canActivate: [visitorGuard],
+  },
+  {
+    path: 'callForPaper-visitor',
+    component: CallForPaperComponent,
+    canActivate: [visitorGuard],
+  },
+  {
+    path: 'contact-visitor',
+    component: ContactVisitorComponent,
+    canActivate: [visitorGuard],
+  },
+  { path: 'signin', component: SigninComponent, canActivate: [visitorGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [visitorGuard] },
 
-    { path: '**', component:HomeVisitorComponent }
+  { path: '**', component: HomeVisitorComponent },
 ];
