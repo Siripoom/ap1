@@ -1,0 +1,129 @@
+.outLine {
+  background: whitesmoke;
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.userBox {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 30px;
+  padding: 10px 0px;
+  border-radius: 25px;
+  height: calc(100vh - 165px);
+}
+
+.tableTitle {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0px;
+  gap: 5px;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search {
+  border-radius: 10px;
+  padding: 0px 20px;
+  background: #011b53;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  transition: all 0.5s ease-in-out 0s;
+  border: unset;
+  cursor: pointer;
+}
+
+.searchBox {
+  border: 2px solid #011b53;
+  font-size: 16px;
+  text-align: center;
+  width: 300px;
+  padding: 5px 0px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.searchBox:hover {
+  border: 2px solid #ff9000;
+}
+
+.searchBox:focus {
+  outline: unset;
+  border: 2px solid #ff9000;
+}
+
+.submit {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #011b53;
+  color: white;
+  border: 2px solid #011b53;
+  transition: all 0.5s ease-in-out 0s;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: #ff9000;
+  border: 2px solid #ff9000;
+}
+
+.searchGroup {
+  display: flex;
+}
+
+.paperList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.paperDetail {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  gap: 5px;
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.listText {
+  margin-left: 30px;
+}
+
+.paperName {
+  display: flex;
+  background: #011b53;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px;
+}

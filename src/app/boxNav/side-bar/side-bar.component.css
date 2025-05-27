@@ -1,0 +1,66 @@
+.sidebarBox {
+  background: white;
+  width: 250px;
+  height: calc(100vh - 131px);
+  padding-top: 50px;
+  position: sticky;
+  transition: all 0.5s ease-in-out 0s;
+  margin-left: 0px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 40px);
+  cursor: pointer;
+  padding: 5px 0px 5px 40px;
+  color: #011b53;
+  gap: 10px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.menu:hover {
+  background: #011b53;
+  color: white;
+  .icon {
+    color: white;
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  transition: 0.5s ease-in-out 0s;
+}
+
+.switchSidebar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 10px;
+  /* width: 20px; */
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+  color: #011b53;
+  gap: 10px;
+}
+
+.switchSidebar:hover {
+  background: #011b53;
+  color: white;
+  border-radius: 5px;
+}
+
+.showRole {
+  display: flex;
+}

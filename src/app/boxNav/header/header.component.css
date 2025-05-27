@@ -1,0 +1,98 @@
+.headerBox {
+  width: 100vw;
+  height: 80px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 900;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.headerTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+  gap: 10px;
+  cursor: default;
+  user-select: none;
+}
+
+.svg-logoBlue {
+  width: 40px;
+  height: 40px;
+}
+
+.titleText01 {
+  color: #08244d;
+  font-weight: 900;
+}
+
+.titleText02 {
+  color: #f9b613;
+  font-weight: 900;
+}
+
+.headerUser {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+.userIcon {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #08244d;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 36px;
+}
+
+.fa-user {
+  position: absolute;
+  top: 5px;
+}
+
+.userDetail {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  margin-right: 100px;
+}
+
+.headerUser:hover > .userDetail > .signout {
+  display: flex;
+}
+
+.displayName {
+  color: #08244d;
+  font-size: 14px;
+}
+
+.role {
+  color: lightgray;
+  font-size: 12px;
+}
+
+.signout {
+  position: absolute;
+  display: none;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: lightgray;
+  cursor: pointer;
+  bottom: -18px;
+  text-wrap: nowrap;
+}
+
+.signout:hover {
+  color: #08244d;
+}

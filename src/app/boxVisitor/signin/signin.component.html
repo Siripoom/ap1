@@ -1,0 +1,35 @@
+<main>
+    <!-- <nav class="rutsLogo">
+        <i class="svg-logo_ruts"></i>
+    </nav> -->
+    <nav class="signinBox">
+        <nav routerLink="/home-visitor" class="bracket">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </nav>
+        <span class="signinHeader">ระบบจัดการการประชุมวิชาการ</span>
+        <form (ngSubmit)="Signin()" [formGroup]="formSignin" class="formSignin">
+            <nav class="inputBox">
+                <i class="fa-solid fa-envelope"></i>
+                <input formControlName="email" type="text" placeholder="email">
+            </nav>
+            <nav class="inputBox">
+                <i class="fa-solid fa-lock"></i>
+                <input formControlName="pass" id="pass" type="password" placeholder="passward" autocomplete="off">
+                <nav (click)="Switch('pass','show','hide')" class="swtichPass">
+                    <nav id="hide" class="eye">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </nav>
+                    <nav id="show" class="eye" style="display: none;">
+                        <i class="fa-solid fa-eye"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <button [disabled]="formSignin.invalid" class="signinBT" type="submit">get start</button>
+        </form>
+        <nav class="forgetBox">
+            <nav routerLink="/signup" class="signup">
+                <span>สมัครสมาชิก</span>
+            </nav>
+        </nav>
+    </nav>
+</main>

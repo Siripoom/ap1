@@ -1,0 +1,67 @@
+main {
+  width: 100vw;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 104px);
+  border-top: 4px solid #ff9000;
+}
+
+.pageBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 30px;
+  height: 100%;
+}
+
+.titleBox {
+  width: 100%;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+}
+
+.title01 {
+  color: #08244d;
+  font-size: 34px;
+}
+
+.title02 {
+  color: #ff9000;
+  font-size: 22px;
+}
+
+.listPaperBox {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.list {
+  width: 250px;
+  background: #e8e8e8;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100px;
+  gap: 10px;
+  border-bottom: 4px solid #ff9000;
+}
+
+.listText01 {
+  color: #08244d;
+  font-weight: 900;
+}
+
+.listText02 {
+  color: #ff9000;
+  font-weight: 900;
+}

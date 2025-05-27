@@ -1,0 +1,78 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="userBox">
+            <nav class="tableTitle">
+                <nav class="left">
+                    <span class="titleText">รายการสมาชิก {{length}} รายการ</span>
+                </nav>
+                <nav class="right">
+                    <nav (click)="Minus()" class="minus">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </nav>
+                    <nav class="page">
+                        <span>1</span>
+                    </nav>
+                    <nav (click)="Plus()" class="plus">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>ลำดับ</th>
+                        <th>ชื่อ (ภาษาไทย)</th>
+                        <th>สถานะ</th>
+                        <th>หลักฐานการจ่ายเงิน</th>
+                        <th>บทบาท</th>
+                        <th>จัดการ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data;index as i">
+                        <td class="tdStart"></td>
+                        <td>{{i + 1}}</td>
+                        <td>{{item.title + item.fname + ' ' + item.lname}}</td>
+                        <td *ngIf="item.status == 0">
+                            <nav (click)="Status(item.no,item.status)" class="disable">
+                                ไม่อนุญาต
+                            </nav>
+                        </td>
+                        <td *ngIf="item.status == 1">
+                            <nav (click)="Status(item.no,item.status)" class="enable">
+                                อนุญาต
+                            </nav>
+                        </td>
+                        <td *ngIf="item.payStatus == 0">รอดำเนินการ</td>
+                        <td *ngIf="item.payStatus == 1">จ่ายเงินแล้ว <nav><i class="fa-solid fa-money-bill"></i></nav>
+                        </td>
+                        <td>
+                            <nav class="role">
+                                <nav (click)="SetRole(item.no,'evaluator')" *ngIf="item.role == 'sender'">{{item.role}}
+                                </nav>
+                                <nav (click)="SetRole(item.no,'admin')" *ngIf="item.role == 'evaluator'">{{item.role}}
+                                </nav>
+                                <nav (click)="SetRole(item.no,'sender')" *ngIf="item.role == 'admin'">{{item.role}}
+                                </nav>
+                            </nav>
+                        </td>
+                        <td>
+                            <nav (click)="Del(item.no)" class="del">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </nav>
+                        </td>
+                        <td class="tdEnd"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </nav>
+    </main>
+</nav>

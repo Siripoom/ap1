@@ -1,0 +1,49 @@
+<nav class="contactBox">
+    <span class="contactTitle01">Contact Us</span>
+    <span class="contactTitle02">Any question? Just write us a message!</span>
+    <form (ngSubmit)="Add()" [formGroup]="formSet">
+        <nav class="group">
+            <label for="">Meassage</label>
+            <textarea formControlName="text" rows="4" placeholder="typing..."></textarea>
+        </nav>
+        <nav class="group">
+            <label for="">Contact Name</label>
+            <input formControlName="name" type="text" placeholder="Enter your name">
+        </nav>
+        <nav class="group">
+            <label for="">Email</label>
+            <input formControlName="email" type="text" placeholder="Enter your email">
+        </nav>
+        <button [disabled]="formSet.invalid" type="submit">SUBMIT</button>
+    </form>
+    <nav class="contactListBox">
+        <nav class="listBox">
+            <nav class="list">
+                <nav class="iconBox">
+                    <i class="fa-solid fa-users"></i>
+                </nav>
+                <span class="listTitle">ABOUT US</span>
+                <span class="listDetail">Its aim was to provide a platform for </span>
+                <span class="listDetail">disseminating and exchanging academic work of</span>
+                <span class="listDetail">undergraduate students in Computer and Information</span>
+                <span class="listDetail">Technology and related fields.</span>
+            </nav>
+            <nav class="list">
+                <nav class="iconBox">
+                    <i class="fa-solid fa-phone"></i>
+                </nav>
+                <span class="listTitle">PHONE</span>
+                <span class="listDetail">+(66) 93 xxx xxxx</span>
+            </nav>
+            <nav class="list">
+                <nav class="iconBox">
+                    <i class="fa-solid fa-location-dot"></i>
+                </nav>
+                <span class="listTitle">UNIVERSITY</span>
+                <span class="listDetail">มหาวิทยาลัยเทคโนโลยีราชมงคลศรีวิชัย</span>
+                <span class="listDetail">เลขที่ 1 ถ.ราชดำเนินนอก ต.บ่อยาง</span>
+                <span class="listDetail">อ.เมือง จ.สงขลา 90000</span>
+            </nav>
+        </nav>
+    </nav>
+</nav>

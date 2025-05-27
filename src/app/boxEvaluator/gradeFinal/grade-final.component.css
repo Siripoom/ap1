@@ -1,0 +1,94 @@
+.outLine {
+  background: whitesmoke;
+}
+
+main {
+  overflow-y: scroll;
+  height: calc(100vh - 81px);
+  width: calc(100vw - 250px);
+  /* padding: 30px; */
+}
+
+.gradeBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 30px 100px;
+  background: white;
+  box-shadow: 0px 0px 8px black;
+  padding: 30px;
+}
+
+.gradeLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.gradeRight01 {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.approveNumBox {
+  display: flex;
+  gap: 10px;
+}
+
+.approveNumBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputGroup {
+  cursor: pointer;
+}
+
+.inputGroup label {
+  cursor: pointer;
+}
+
+.openFile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px;
+  cursor: pointer;
+  background: orange;
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+  transition: all 0.5s ease-in-out 0s;
+  border: unset;
+}
+
+.openFile:hover {
+  background: orangered;
+}
+
+.evaluatorBT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px;
+  cursor: pointer;
+  background: skyblue;
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+  transition: all 0.5s ease-in-out 0s;
+  border: unset;
+}
+
+.evaluatorBT:hover {
+  background: blue;
+}
+
+table {
+  width: 100%;
+}

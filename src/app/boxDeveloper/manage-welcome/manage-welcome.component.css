@@ -1,0 +1,235 @@
+.outLine {
+  background: whitesmoke;
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.userBox {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 30px;
+  padding: 10px 0px;
+  background: white;
+  border-radius: 25px;
+  height: calc(100vh - 165px);
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0px;
+}
+
+th {
+  font-size: 18px;
+  font-weight: 900;
+  color: #011b53;
+  background: #e8e8e8;
+  padding: 5px 0px;
+}
+
+td {
+  padding: 5px 0px;
+  font-weight: 16px;
+  border-bottom: 2px solid rgba(211, 211, 211, 0.5);
+}
+
+.tdStart {
+  width: 5px;
+  border: unset;
+}
+
+.tdEnd {
+  width: 5px;
+  border: unset;
+}
+
+.del {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.del:hover {
+  color: red;
+}
+
+.tableTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 25px;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 900;
+  margin-left: 20px;
+}
+
+.minus,
+.plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+  color: black;
+}
+
+.minus:hover,
+.plus:hover {
+  background: #011b53;
+  color: white;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page {
+  cursor: default;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disable {
+}
+
+.enable {
+  background: #011b53;
+  color: white;
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.disable {
+  background: #ff9000;
+  color: white;
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.role {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.role:hover {
+  color: goldenrod;
+  text-shadow: 0px 0px 8px peru;
+}
+
+.addBT {
+  padding: 5px 15px;
+}
+
+.fa-plus {
+  color: #011b53;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.popupBox {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.formSet {
+  position: sticky;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  padding: 30px;
+  gap: 5px;
+}
+
+.backClose {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.formClose {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.formTitle {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: unset;
+  background: #011b533d;
+}
+
+.inputBox:focus {
+  outline: unset;
+}
+
+p {
+  margin: unset;
+}
+
+.manageTD {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.edit {
+  color: blue;
+  cursor: pointer;
+}
+
+.del {
+  color: red;
+  cursor: pointer;
+}

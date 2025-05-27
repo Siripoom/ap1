@@ -1,0 +1,151 @@
+main {
+  background: whitesmoke;
+  /* padding: 30px; */
+  width: calc(100vw - 250px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 30px; */
+  /* height: calc(100vh - 82px); */
+}
+
+.paperDetailBox {
+  /* display: flex; */
+  /* width: calc(100vw - 300px); */
+  padding: 30px;
+}
+
+.paperDetail {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  /* width: 100%; */
+  gap: 10px;
+}
+
+.line {
+  width: 300px;
+  height: 2px;
+  background: lightgray;
+}
+
+.tableBox {
+  padding: 30px;
+  background: white;
+  margin: 30px;
+  border-radius: 15px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 900px;
+}
+
+.table {
+  /* height: calc(100vh - 142px); */
+  width: 100%;
+}
+
+.tableList {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.tableList th {
+  background: lightgray;
+}
+
+.tableList td {
+  background: snow;
+  border-bottom: 0.5px solid lightgray;
+  text-align: center;
+}
+
+.listAdd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add {
+  display: flex;
+  padding: 5px 15px;
+}
+
+.popupBox {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.formSet {
+  position: sticky;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  padding: 30px;
+  gap: 5px;
+}
+
+.backClose {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.formClose {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.formTitle {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: unset;
+  background: #011b533d;
+}
+
+.inputBox:focus {
+  outline: unset;
+}
+
+p {
+  margin: unset;
+}
+
+.del {
+  cursor: pointer;
+  color: red;
+}

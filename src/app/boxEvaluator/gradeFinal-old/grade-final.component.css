@@ -1,0 +1,106 @@
+.outLine {
+  background: whitesmoke;
+}
+
+main {
+  overflow-y: scroll;
+  height: calc(100vh - 81px);
+  width: calc(100vw - 250px);
+  /* padding: 30px; */
+}
+
+.borderPaper {
+  background: white;
+  width: 210mm;
+  min-height: 297mm;
+  box-shadow: 0px 0px 3px 0px lightgray;
+  margin: 30px;
+  padding-bottom: 30px;
+}
+
+.inBorder {
+  display: flex;
+  flex-direction: column;
+}
+
+.textLine01 {
+  color: #011b53;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 0px 10%;
+  margin-top: 60px;
+}
+
+.textLine02 {
+  color: #011b53;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 60px;
+  padding: 0px 10%;
+}
+
+.gradeUser {
+  background: #011b53;
+  color: white;
+  padding: 30px 10%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.textLine04 {
+  font-size: 16px;
+  padding: 0px 10%;
+}
+
+.textLine05 {
+  font-size: 18px;
+  font-weight: 900;
+  padding: 0px 10%;
+}
+
+.textLine06 {
+  font-size: 16px;
+  font-weight: 900;
+  padding: 0px 10%;
+}
+
+iframe {
+  margin: 10%;
+  background: lightgray;
+  min-height: 600px;
+}
+
+.addFileText {
+  color: #011b53;
+}
+
+.addNewFile {
+  margin: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  background: lightgray;
+  height: 120px;
+  position: sticky;
+}
+
+.fa-plus {
+  position: absolute;
+  top: 40px;
+  font-size: 40px;
+}
+
+table {
+  margin: 0px 10%;
+}
+
+.addScoreBox {
+  width: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}

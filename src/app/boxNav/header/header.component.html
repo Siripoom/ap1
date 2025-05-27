@@ -1,0 +1,21 @@
+<nav class="headerBox">
+    <nav class="headerTitle">
+        <i class="svg-logoBlue"></i>
+        <span class="titleText01">Acadamin</span>
+        <span class="titleText02">Conference</span>
+        <span class="titleText02">{{year}}</span>
+    </nav>
+    <nav class="headerUser">
+        <nav class="userIcon">
+            <i class="fa-solid fa-user"></i>
+        </nav>
+        <nav class="userDetail">
+            <span class="displayName">{{user.title + user.fname + ' ' + user.lname}}</span>
+            <span class="role">{{user.role}}</span>
+            <nav (click)="Signout()" class="signout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>ออกจากระบบ</span>
+            </nav>
+        </nav>
+    </nav>
+</nav>

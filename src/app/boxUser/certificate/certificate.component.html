@@ -1,0 +1,54 @@
+<header class="header">
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside class="aside">
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main class="main">
+        <nav class="paper">
+            <nav (click)="Print()" class="print">
+                <i class="fa-solid fa-print"></i>
+            </nav>
+            <!-- EN -->
+            <nav *ngIf="lang == 'en'" class="paperLogo">
+                <img src="SVG/logoBlue.svg" width="75px">
+            </nav>
+            <span *ngIf="lang == 'en'" class="font-black text-4xl">Academic Conference Management System</span>
+            <nav *ngIf="lang == 'en'" class="flex justify-center items-center gap-10">
+                <nav class="flex w-[200px] h-[10px] bg-blue-950"></nav>
+                <i class="fa-solid fa-award text-[48px] text-amber-600"></i>
+                <nav class="flex w-[200px] h-[10px] bg-blue-950"></nav>
+            </nav>
+            <span *ngIf="lang == 'en'">THIS IS CERTIFY THAT</span>
+            <span *ngIf="lang == 'en'" class="font-black">{{owner.titleEN + owner.fnameEN + ' ' + owner.lnameEN}}</span>
+            <nav *ngIf="lang == 'en'" class="flex w-[80%] h-[4px] bg-blue-500"></nav>
+            <span *ngIf="lang == 'en'">has Presend a research paper</span>
+            <span *ngIf="lang == 'en'" class="font-black">{{paper.titleNews}}</span>
+            <nav *ngIf="lang == 'en'" class="flex justify-center items-center flex-col">
+                <span>(with the award of <span class="font-bold text-blue-950">{{awardText}}</span>)</span>
+                <span>held on {{paper.dateE}} tem</span>
+            </nav>
+
+            <!-- TH -->
+            <nav *ngIf="lang == 'th'" class="paperLogo">
+                <img src="SVG/logoBlue.svg" width="75px">
+            </nav>
+            <span *ngIf="lang == 'th'" class="font-black text-4xl">ระบบบริหารจัดการการประชุมวิชาการ</span>
+            <nav *ngIf="lang == 'th'" class="flex justify-center items-center gap-10">
+                <nav class="flex w-[200px] h-[10px] bg-blue-950"></nav>
+                <i class="fa-solid fa-award text-[48px] text-amber-600"></i>
+                <nav class="flex w-[200px] h-[10px] bg-blue-950"></nav>
+            </nav>
+            <span *ngIf="lang == 'th'">ขอมอบเกียรติบัติฉบับนี้ไว้เพื่อแสดงว่า</span>
+            <span *ngIf="lang == 'th'" class="font-black">{{owner.title + owner.fname + ' ' + owner.lname}}</span>
+            <nav *ngIf="lang == 'th'" class="flex w-[80%] h-[4px] bg-blue-500"></nav>
+            <span *ngIf="lang == 'th'">ผลงานเรื่อง</span>
+            <span *ngIf="lang == 'th'" class="font-black">{{paper.titleNews}}</span>
+            <nav *ngIf="lang == 'th'" class="flex justify-center items-center flex-col">
+                <span>(ได้รับรางวัลการนำเสนอบทความแบบนวัตกรรม <span class="font-bold text-blue-950">{{awardText}}</span>)</span>
+                <span>ให้ไว้ ณ วันที่ {{paper.dateE}} tem</span>
+            </nav>
+        </nav>
+    </main>
+</nav>

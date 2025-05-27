@@ -1,0 +1,46 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="userBox">
+            <nav class="tableTitle">
+                <nav class="left">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="titleText">ผู้มาติดต่อ {{length}} รายการ</span>
+                </nav>
+                <nav class="right">
+                    <nav (click)="Minus()" class="minus">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </nav>
+                    <nav class="page">
+                        <span>1</span>
+                    </nav>
+                    <nav (click)="Plus()" class="plus">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <table>
+                <tbody>
+                    <tr *ngFor="let item of data;index as i">
+                        <td (click)="Mail(item.email)" class="tdStart"></td>
+                        <td (click)="Mail(item.email)" class="tableName">
+                            <span>{{item.name}}</span>
+                        </td>
+                        <td (click)="Mail(item.email)" class="tableText">
+                            <span>{{item.text}}</span>
+                        </td>
+                        <td (click)="Mail(item.email)">
+                            <span>{{NameDate(item.date)}}</span>
+                        </td>
+                        <td (click)="Mail(item.email)" class="tdEnd"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </nav>
+    </main>
+</nav>

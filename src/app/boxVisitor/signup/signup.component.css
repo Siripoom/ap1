@@ -1,0 +1,132 @@
+main {
+  min-height: 100vh;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background: #08244d;
+  padding: 30px 0px;
+}
+
+.svg-logo_ruts {
+  width: 256px;
+  height: 64px;
+}
+
+.signinBox {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputBox {
+  width: 40vw;
+  display: flex;
+  position: sticky;
+  background: #011b533d;
+  padding: 10px 15px;
+  border-radius: 15px;
+  align-items: center;
+}
+
+.inputBox input,
+select {
+  width: 100%;
+  background: transparent;
+  border: unset;
+}
+
+.inputBox input:focus,
+select:focus {
+  outline: unset;
+}
+
+.inputBox span {
+  position: absolute;
+  left: 40px;
+  font-size: 12px;
+  color: gray;
+}
+
+span {
+  font-size: 14px;
+  color: #011b53;
+  font-weight: 900;
+}
+
+.inputIcon {
+  position: absolute;
+}
+
+.bracket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #023681;
+  color: white;
+  cursor: pointer;
+}
+
+.signinHeader {
+  color: black;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.formSignin {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fa-envelope {
+  color: #011b53;
+}
+
+.fa-lock {
+  color: #011b53;
+}
+
+.eye {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.signinBT {
+  background: #023681;
+  color: white;
+  border: unset;
+  padding: 10px 0px;
+  font-weight: 900;
+}
+
+.forgetBox {
+  display: flex;
+  justify-content: right;
+  width: calc(40vw + 30px);
+}
+
+.signup {
+  color: #011b53;
+  cursor: pointer;
+}
+
+.fa-eye,
+.fa-eye-slash {
+  color: #08244d;
+}
+
+.swtichPass {
+  cursor: pointer;
+}

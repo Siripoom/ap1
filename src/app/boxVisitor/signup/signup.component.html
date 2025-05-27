@@ -1,0 +1,93 @@
+<main>
+    <!-- <nav class="rutsLogo">
+        <i class="svg-logo_ruts"></i>
+    </nav> -->
+    <nav class="signinBox">
+        <nav routerLink="/home-visitor" class="bracket">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </nav>
+        <span class="signinHeader">ระบบจัดการการประชุมวิชาการ</span>
+        <form (ngSubmit)="Signup()" [formGroup]="formSignup" class="formSignin" autocomplete="off">
+            <span>Email (อีเมล์สำหรับการเข้าระบบ)</span>
+            <nav class="inputBox">
+                <input formControlName="email" type="text" placeholder="email">
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="pass" type="password" id="pass" placeholder="passward" autocomplete="off">
+                <nav (click)="Switch('pass','show01','hide01')" class="swtichPass">
+                    <nav id="hide01" class="eye">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </nav>
+                    <nav id="show01" class="eye" style="display: none;">
+                        <i class="fa-solid fa-eye"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="passCon" type="password" id="passCon" placeholder="confirm passward"
+                    autocomplete="off">
+                <nav (click)="Switch('passCon','show02','hide02')" class="swtichPass">
+                    <nav id="hide02" class="eye">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </nav>
+                    <nav id="show02" class="eye" style="display: none;">
+                        <i class="fa-solid fa-eye"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <span>Personal Data in Thai (ข้อมูลบุคคล) ภาษาไทย</span>
+            <nav class="inputBox">
+                <select formControlName="title">
+                    <option value="">คำนำหน้า</option>
+                    <option value="นาย">นาย</option>
+                    <option value="นางสาว">นางสาว</option>
+                    <option value="นาง">นาง</option>
+                </select>
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="fname" type="text" placeholder="ชื่อ">
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="lname" type="text" placeholder="นามสกุล">
+            </nav>
+            <span>Personal Data in English (ข้อมูลบุคคล) ภาษาอังกฤษ</span>
+            <nav class="inputBox">
+                <select formControlName="titleEN">
+                    <option value="">คำนำหน้า</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Mrs.">Mrs.</option>
+                </select>
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="fnameEN" type="text" placeholder="ชื่อ">
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="lnameEN" type="text" placeholder="นามสกุล">
+            </nav>
+            <span>Education Data (ข้อมูลการศึกษา)</span>
+            <nav class="inputBox">
+                <input formControlName="university" type="text" placeholder="มหาวิทยาลัย">
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="faculty" type="text" placeholder="คณะวิชา">
+            </nav>
+            <nav class="inputBox">
+                <input formControlName="fields" type="text" placeholder="สาขาวิชา">
+            </nav>
+            <nav class="inputBox">
+                <select formControlName="role">
+                    <option value="">บทบาท</option>
+                    <option value="sender">ผู้ส่งบทความ</option>
+                    <option value="evaluator">ผู้ประเมิน</option>
+                </select>
+            </nav>
+            <button [disabled]="formSignup.invalid" class="signinBT" type="submit">สมัครสมาชิก</button>
+        </form>
+        <nav class="forgetBox">
+            <nav routerLink="/signin" class="signup">
+                <span>เข้าสู่ระบบ</span>
+            </nav>
+        </nav>
+    </nav>
+</main>

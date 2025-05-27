@@ -1,0 +1,105 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="paperDetailBox">
+            <nav class="paperDetail">
+                <label for="">หัวข้อ</label>
+                <span> - {{data.titleNews}}</span>
+                <label for="">ประเภท</label>
+                <span> - {{data.typesNews}}</span>
+                <label for="">บทคัดย่อ</label>
+                <p> - {{data.textNews}}</p>
+                <label for="">ผู้ส่งบทความ</label>
+                <span> - อีเมลล์ : {{data.email}}</span>
+                <span> - ชื่อ-สกุล :{{data.name}}</span>
+                <span> - มหาวิทยาลัย :{{data.university}}</span>
+                <span> - คณะ :{{data.faculty}}</span>
+                <span> - สาขา :{{data.fields}}</span>
+            </nav>
+        </nav>
+        <nav class="tableBox">
+            <nav (click)="OpenPopup()" class="listAdd">
+                <span>รายชื่อผู้ประเมิน</span>
+                <nav class="add bt-blue">เพิ่มผู้ประเมิน</nav>
+            </nav>
+            <table class="tableList">
+                <thead>
+                    <tr>
+                        <th>ลำดับ</th>
+                        <th>ชื่อ-สกุล</th>
+                        <th>อีเมลล์</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of readyPerson;index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>
+                            <nav class="manageTD">
+                                <nav (click)="Del(item.no)" class="del">
+                                    <i class="fa-solid fa-trash"></i>
+                                </nav>
+                            </nav>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </nav>
+    </main>
+</nav>
+<!-- popup -->
+<nav id="popup" class="popupBox" style="display: none;">
+    <nav (click)="ClosePopup()" class="backClose"></nav>
+    <form (ngSubmit)="Set()" [formGroup]="formSet" class="formSet">
+        <nav (click)="ClosePopup()" class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav>
+        <span id="formTitle" class="formTitle">เพิ่มผู้ประเมิน</span>
+        <nav class="formGroup">
+            <label for="">ผู้ประเมิน</label>
+            <select formControlName="email" class="inputBox">
+                <option value="">โปรดเลือก</option>
+                <option *ngFor="let item of evaPerson" value="{{item.email}}">{{item.title + item.fname + ' ' +
+                    item.lname}}</option>
+            </select>
+        </nav>
+        <button [disabled]="formSet.invalid" class="bt-blue" type="submit">บันทึก</button>
+    </form>
+    <nav id="evaluatorBox" class="evaluatorBox" style="display: none;">
+        <nav class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav>
+        <span class="formTitle">บทความที่เข้าแข่งขัน</span>
+        <form id="addEvaluator" class="addEvaluator" style="display: none;">
+            <span id="evaNo" class="evaNo"></span>
+            <nav class="inputGroup">
+                <input id="emailEvaluator" class="inputBox" type="search" list="listEvaluator">
+                <button class="addEvaluatorBT" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </nav>
+        </form>
+        <table class="evaluator">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ผู้ส่ง</th>
+                    <th>ผู้ประเมิน</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </nav>
+</nav>

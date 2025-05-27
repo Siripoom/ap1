@@ -1,0 +1,136 @@
+.outLine {
+  background: whitesmoke;
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.userBox {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 30px;
+  padding: 10px 0px;
+  background: white;
+  border-radius: 25px;
+  height: calc(100vh - 165px);
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0px;
+}
+
+th {
+  font-size: 18px;
+  font-weight: 900;
+  color: #011b53;
+  background: #e8e8e8;
+  padding: 5px 0px;
+}
+
+td {
+  padding: 5px 0px;
+  font-weight: 16px;
+  border-bottom: 2px solid rgba(211, 211, 211, 0.5);
+}
+
+.tdStart {
+  width: 5px;
+  border: unset;
+}
+
+.tdEnd {
+  width: 5px;
+  border: unset;
+}
+
+.del {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.del:hover {
+  color: red;
+}
+
+.tableTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 25px;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 900;
+  margin-left: 20px;
+}
+
+.minus,
+.plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+  color: black;
+}
+
+.minus:hover,
+.plus:hover {
+  background: #011b53;
+  color: white;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page {
+  cursor: default;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disable {
+}
+
+.enable {
+  background: #011b53;
+  color: white;
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.disable {
+  background: #ff9000;
+  color: white;
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.role {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.role:hover {
+  color: goldenrod;
+  text-shadow: 0px 0px 8px peru;
+}

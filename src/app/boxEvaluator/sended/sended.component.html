@@ -1,0 +1,48 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="userBox">
+            <nav class="tableTitle">
+                <nav class="left">
+                    <span class="titleText">ประเมินผลงาน</span>
+                </nav>
+                <!-- <nav class="right">
+                    <nav class="fillter">
+                        <select (change)="FetchEvaluator(0,19)" id="selectTypes" class="search">
+                            <option value="">เลือกประเภทบทความ</option>
+                            <option *ngFor="let item of types" value="{{item.name}}">{{item.name}}</option>
+                        </select>
+                    </nav>
+                </nav>
+                <nav class="right">
+                    <nav class="searchGroup">
+                        <input (change)="Search()" id="search" class="searchBox" type="search"
+                            placeholder="ค้นหาบทความ">
+                        <button (click)="Search()" class="submit" type="button"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </nav>
+                </nav> -->
+            </nav>
+            <nav class="paperList">
+                <nav *ngFor="let item of data;index as i" class="list sticky">
+                    <nav class="absolute top-0 right-0 z-10 flex items-center justify-center gap-2">
+                        <nav class="bg-amber-500 p-2 rounded-md cursor-pointer">certificate ภาษาไทย</nav>
+                        <nav class="bg-orange-500 p-2 rounded-md cursor-pointer">certificate ภาษาอังกฤษ</nav>
+                    </nav>
+                    <nav (click)="Grade(item.noPaper,item.titleNews)" class=" paperDetail">
+                        <span class="listText">ประเภท : {{paper[i].typesNews}}</span>
+                        <span class="listText">บทความโดย {{paper[i].name}}</span>
+                        <nav class="paperName">
+                            <span>{{paper[i].titleNews}}</span>
+                        </nav>
+                    </nav>
+                </nav>
+            </nav>
+        </nav>
+    </main>
+</nav>

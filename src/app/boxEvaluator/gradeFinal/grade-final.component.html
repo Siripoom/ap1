@@ -1,0 +1,157 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="gradeBox">
+            <nav class="gradeLeft">
+                <span>View Submission Detail</span>
+                <span>Submission ID : {{dataPaper.no}}</span>
+                <span>Title (ชื่อบทความ)</span>
+                <span>{{dataPaper.titleNews}}</span>
+                <span>Abstract (บทคัดย่อ)</span>
+                <p>{{dataNews.text}}</p>
+                <span>File (ไฟล์)</span>
+                <button class="openFile" (click)="OpenFile()" type="button"><i class="fa-solid fa-download"></i>
+                    เปิดไฟล์</button>
+                <span>File Edited (ไฟล์แก้ไข)</span>
+                <button class="openFile" (click)="OpenFile2()" type="button"><i class="fa-solid fa-download"></i>
+                    เปิดไฟล์</button>
+                <nav *ngIf="dataPaper.status == 1 || dataPaper.status == 2 || dataPaper.status == 3">
+                    <span *ngIf="(scoreAll / 79 * 100 > dataPaper.score)">ผลประเมิน : very good paper</span>
+                    <span
+                        *ngIf="scoreAll / 69 * 100 > dataPaper.score && scoreAll / 80 * 100 < dataPaper.score">ผลประเมิน
+                        :
+                        good paper</span>
+                    <span *ngIf="scoreAll / 69 * 100 < dataPaper.score">ผลประเมิน : เข้าร่วม</span>
+                </nav>
+                <nav *ngIf="dataPaper.status == 5">
+                    <span *ngIf="(scoreAll2 / 79 * 100 > dataPaper.score)">ผลประเมิน : very good paper</span>
+                    <span
+                        *ngIf="scoreAll2 / 69 * 100 > dataPaper.score && scoreAll2 / 80 * 100 < dataPaper.score">ผลประเมิน
+                        :
+                        good paper</span>
+                    <span *ngIf="scoreAll2 / 69 * 100 < dataPaper.score">ผลประเมิน : เข้าร่วม</span>
+                </nav>
+                <nav *ngIf="dataPaper.status == 4">
+                    <span>ผลประเมิน : ไม่ผ่าน</span>
+                </nav>
+            </nav>
+            <nav class="gradeRight01">
+                <nav class="approveNumBox">
+                    <nav (click)="EVABox1()" id="EVABox1" class="inputGroup" style="display: none;">
+                        <input type="radio" name="approveNum" id="approve01" checked>
+                        <label for="approve01">ประเมินครั้งที่ 1</label>
+                    </nav>
+                    <span id="EVABoxD" style="display: none;">:</span>
+                    <nav (click)="EVABox2()" id="EVABox2" class="inputGroup" style="display: none;">
+                        <input type="radio" name="approveNum" id="approve02">
+                        <label for="approve02">ประเมินครั้งที่ 2</label>
+                    </nav>
+                </nav>
+                <nav id="b01" class="b01" style="display: block;">
+                    <span>Evaluator (ประเมิน)</span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Question (Score 0:Lowest,5:Highest)</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of dataQuestion">
+                                <td>{{item.question}}</td>
+                                <td><input (click)="QuestionGrade(0,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id="" checked></td>
+                                <td><input (click)="QuestionGrade(1,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade(2,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade(3,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade(4,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade(5,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span>คะแนน : {{score}}/{{scoreAll}}</span>
+                    <form (ngSubmit)="Evaluator()" [formGroup]="formEvaluator">
+                        <nav (click)="Approve(1)" class="inputGroup">
+                            <input id="app01" type="radio" name="approve" checked>
+                            <label for="app01">ตอบรับแบบไม่แก้ไข</label>
+                        </nav>
+                        <nav (click)="Approve(2)" class="inputGroup">
+                            <input id="app02" type="radio" name="approve">
+                            <label for="app02">ตอบรับแบบแก้ไขเล็กน้อย</label>
+                        </nav>
+                        <nav (click)="Approve(3)" class="inputGroup">
+                            <input id="app03" type="radio" name="approve">
+                            <label for="app03">ตอบรับแบบแก้ไขมาก</label>
+                        </nav>
+                        <nav (click)="Approve(4)" class="inputGroup">
+                            <input id="app04" type="radio" name="approve">
+                            <label for="app04">ไม่ตอบรับ</label>
+                        </nav>
+                        <label for="">คำแนะนำ</label>
+                        <textarea formControlName="note" name="" id="note" rows="8"></textarea>
+                        <label for="">ไฟล์คำแนะนำ</label>
+                        <input formControlName="file" type="url" name="" id="file">
+                        <button class="openFile" (click)="OpenEvaluator()" id="BTD01" type="button"
+                            style="display: none;"><i class="fa-solid fa-download"></i>
+                            เปิดไฟล์</button>
+                        <button [disabled]="formEvaluator.invalid" id="submit" class="evaluatorBT"
+                            type="submit">ประเมิน</button>
+                    </form>
+                </nav>
+                <nav id="b02" class="b02" style="display: none;">
+                    <span>Evaluator (ประเมิน)</span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Question (Score 0:Lowest,5:Highest)</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of dataQuestion">
+                                <td>{{item.question}}</td>
+                                <td><input (click)="QuestionGrade2(0,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id="" checked></td>
+                                <td><input (click)="QuestionGrade2(1,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade2(2,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade2(3,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade2(4,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                                <td><input (click)="QuestionGrade2(5,item.question,item.name)" type="radio"
+                                        name="{{item.name}}" id=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span>คะแนน : {{score2}}/{{scoreAll2}}</span>
+                    <form (ngSubmit)="Evaluator2()" [formGroup]="formEvaluator2">
+                        <button [disabled]="formEvaluator2.invalid" id="submit2" class="evaluatorBT"
+                            type="submit">ประเมิน</button>
+                    </form>
+                </nav>
+            </nav>
+        </nav>
+    </main>
+</nav>

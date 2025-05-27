@@ -1,0 +1,119 @@
+main {
+  width: calc(100vw - 200px);
+  background: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* overflow-y: auto; */
+}
+
+.outLine {
+}
+
+@page {
+  width: 297mm;
+  height: 210mm;
+  size: landscape;
+  page: A4;
+  margin: 0;
+}
+
+.paper {
+  width: 297mm;
+  height: 210mm;
+  box-shadow: 0px 0px 3px 0px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: white;
+  position: sticky;
+}
+
+.print {
+  top: -20px;
+  right: -20px;
+  padding: 5px;
+  position: absolute;
+  font-size: 30px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: skyblue;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 3px black;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.print:hover {
+  background: blue;
+  color: white;
+}
+
+.signedLine {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.signedBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.universityTitle {
+  font-size: 40px;
+  font-weight: 900;
+  color: darkblue;
+}
+
+.certificateName {
+  font-size: 34px;
+  font-weight: 900;
+  color: rgb(207, 161, 46);
+}
+
+.signedBox {
+  font-size: 24px;
+}
+
+.line {
+  color: blue;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.universitySub {
+  font-size: 26px;
+  font-weight: 900;
+  color: blueviolet;
+}
+
+.rainbow {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.rainbow nav {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 40%;
+  height: 6px;
+  background: goldenrod;
+}

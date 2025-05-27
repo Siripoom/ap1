@@ -1,0 +1,444 @@
+<header>
+  <app-header></app-header>
+</header>
+<nav class="outLine">
+  <aside>
+    <app-side-bar></app-side-bar>
+  </aside>
+  <main>
+    <nav class="userBox">
+      <nav *ngFor="let item of data" class="paperList">
+        <nav class="paperName">
+          <span>{{item.titleNews}}</span>
+        </nav>
+        <nav *ngFor="let item of data" class="infoBox">
+          <nav class="list">
+            <span class="listText">ประเภท : {{item.typesNews}}</span>
+            <p class="listText">รายละเอียด : {{item.textNews}}</p>
+            <!-- <span *ngIf="item.status == 0" class="listText">สถานะ : ระหว่างดำเนินการ</span>
+                        <span *ngIf="item.status == 1" class="listText">สถานะ : สิ้นสุดการประเมิน</span> -->
+            <!-- <span class="listText">ผลประเมิน : {{item.score}}</span> -->
+            <!-- {{item.score}} -->
+            <!-- <nav *ngIf="item.status == 1 || item.status == 2 || item.status == 3 || item.status == 5">
+              <span class="listText" *ngIf="(item.scoreMax / 79 * 100 > item.score)">ผลประเมิน : very good
+                paper</span>
+              <span *ngIf="item.scoreMax / 69 * 100 > item.score && item.scoreMax / 80 * 100 < item.score">ผลประเมิน
+                :
+                good paper</span>
+              <span *ngIf="item.scoreMax / 69 * 100 < item.score">ผลประเมิน : เข้าร่วม</span>
+            </nav>
+            <nav *ngIf="item.status == 4">
+              <span>ผลประเมิน : ไม่ผ่าน</span>
+            </nav> -->
+            <!-- <span>File (ไฟล์)</span> -->
+            <!-- <button class="openFile" (click)="OpenFile(item.file)" type="button"><i
+                                class="fa-solid fa-download"></i>
+                            เปิดไฟล์</button>
+                        <span>File Edited (ไฟล์แก้ไข)</span>
+                        <button *ngIf="item.file2" class="openFile" (click)="OpenFile(item.file2)" type="button"><i
+                                class="fa-solid fa-download"></i>
+                            เปิดไฟล์</button>
+                        <form (ngSubmit)="NewFile()" [formGroup]="formNewFile" *ngIf="!item.file2" class="addFile">
+                            <span>เพิ่มไฟล์ที่แก้ไขแล้ว</span>
+                            <input formControlName="file" type="url" name="" id="">
+                            <button [disabled]="formNewFile.invalid" type="submit">บันทึก</button>
+                        </form> -->
+          <nav class="flex flex-col">
+            <span class="text-xl">ผลประเมิน</span>
+            <nav class="flex items-center">
+              <span>รอบคัดเลือก : </span>
+              <span *ngIf="saveST01 == 1">ผ่านแบบไม่ต้องแก้ไข</span>
+              <span *ngIf="saveST01 == 2">ผ่านแบบแก้ไข</span>
+              <span *ngIf="saveST01 == 0">ไม่ผ่าน</span>
+            </nav>
+            <nav class="flex items-center">
+              <span>รอบแก้เนื้อหา : </span>
+              <span *ngIf="saveST02 == 1">ผ่าน</span>
+              <span *ngIf="saveST02 == 0">ไม่ผ่าน</span>
+            </nav>
+            <nav class="flex items-center">
+              <span>รอบสมบูรณ์ : </span>
+              <span *ngIf="saveST03 == 1">ผ่าน</span>
+              <span *ngIf="saveST03 == 0">ไม่ผ่าน</span>
+            </nav>
+          </nav>
+          </nav>
+          <nav class="registerDetail">
+            <label for="">ชื่อผู้สมัคร : {{item.name}}</label>
+            <label *ngIf="item.role == 'sender'" for="">บทบาท : ผู้ส่งบทความ</label>
+            <label *ngIf="item.role == 'evaluator'" for="">บทบาท : ผู้ประเมิน</label>
+            <label *ngIf="item.role == 'admin'" for="">บทบาท : ผู้ดูแล</label>
+            <label *ngIf="item.role == 'developer'" for="">บทบาท : นักพัฒนา</label>
+            <label for="">สาขา : {{item.fields}}</label>
+            <label for="">คณะ : {{item.faculty}}</label>
+            <label for="">มหาวิทยาลัย : {{item.university}}</label>
+            <!-- <label *ngIf="this.evaluatorData" for="">คำแนะนำจากกรรมการ : </label> -->
+            <!-- <p *ngIf="this.evaluatorData">{{this.evaluatorData.note}}</p> -->
+            <!-- <button *ngIf="this.evaluatorData" class="openFile" (click)="OpenFile(this.evaluatorData.file)"
+                            type="button"><i class="fa-solid fa-download"></i>
+                            เปิดไฟล์</button> -->
+          </nav>
+        </nav>
+        <nav *ngIf="saveST03" class="flex w-full justify-center items-center">
+          <nav (click)="Certificate(data[0].no,'th')" class="flex justify-center items-center w-[40%] bg-orange-500 text-2xl text-white p-4 cursor-pointer">
+            <span>ใบ Certificate ภาษาไทย</span>
+          </nav>
+          <nav (click)="Certificate(data[0].no,'en')" class="flex justify-center items-center w-[40%] bg-purple-500 text-2xl text-white p-4 cursor-pointer">
+            <span>ใบ Certificate ภาษาอังกฤษ</span>
+          </nav>
+        </nav>
+        <nav class="flex justify-center items-center w-full">
+          <hr style="width: 80%;">
+        </nav>
+        <nav *ngIf="round > 0 && paperStatus == 2 && !file02" class="pageEvaluator">
+          <span>ส่งไฟล์รอบแก้ไข</span>
+          <nav *ngIf="file02 && round > 0">ส่งไฟล์แล้ว</nav>
+          <form *ngIf="!file02 && round > 0" (ngSubmit)="UpDoc('upDoc02')" [formGroup]="formUpDoc" class="formRegister">
+            <nav class="addfile">
+              <label for="">ลิงค์ไฟล์</label>
+              <input (change)="Base64($event)" class="inputBox" type="file" accept="application/pdf">
+              <button [disabled]="formUpDoc.invalid" class="bt-sky" type="submit">ส่งผลงาน</button>
+            </nav>
+          </form>
+        </nav>
+        <nav *ngIf="round > 0 && paperStatus == 3 && !file03" class="pageEvaluator">
+          <span>ส่งไฟล์รอบสมบูรณ์</span>
+          <nav *ngIf="file03 && round > 0">ส่งไฟล์แล้ว</nav>
+          <form *ngIf="!file03 && round > 0" (ngSubmit)="UpDoc('upDoc03')" [formGroup]="formUpDoc" class="formRegister">
+            <nav class="addfile">
+              <label for="">ลิงค์ไฟล์</label>
+              <input (change)="Base64($event)" class="inputBox" type="file" accept="application/pdf">
+              <button [disabled]="formUpDoc.invalid" class="bt-sky" type="submit">ส่งผลงาน</button>
+            </nav>
+          </form>
+        </nav>
+        <nav *ngIf="round > 1 && paperStatus == 1 && file03" class="pageEvaluator">
+          <span>ส่งไฟล์รอบสมบูรณ์</span>
+          <nav *ngIf="file03 && round > 1">ส่งไฟล์แล้ว</nav>
+          <form *ngIf="!file03 && round > 1" (ngSubmit)="UpDoc('upDoc03')" [formGroup]="formUpDoc" class="formRegister">
+            <nav class="addfile">
+              <label for="">ลิงค์ไฟล์</label>
+              <input (change)="Base64($event)" class="inputBox" type="file" accept="application/pdf">
+              <button [disabled]="formUpDoc.invalid" class="bt-sky" type="submit">ส่งผลงาน</button>
+            </nav>
+          </form>
+        </nav>
+        <span class="text-xl font-black pageEvaluator">จัดการผลประเมิน</span>
+        <nav class="w-full grid grid-cols-3 pl-[30px] pr-[30px] gap-2">
+          <form (ngSubmit)="SetST('SetST01')" [formGroup]="formSetSTPaper" class="flex flex-col">
+            <span>ประเมินรอบคัดเลือก</span>
+            <nav class="flex">
+              <nav class="w-full flex items-center gap-1 bg-green-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve01" value="1">
+                <label for="approve01">ผ่านแบบไม่ต้องแก้ไข</label>
+              </nav>
+              <nav class="w-full flex items-center gap-1 bg-orange-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve01e" value="2">
+                <label for="approve01e">ผ่านผ่านแบบแก้ไข</label>
+              </nav>
+              <nav class="w-full flex items-center gap-1 bg-red-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve01n" value="-1">
+                <label for="approve01n">ไม่ผ่าน</label>
+              </nav>
+            </nav>
+            <button [disabled]="formSetSTPaper.invalid" class="bt-blue" type="submit">บันทึก</button>
+          </form>
+          <form (ngSubmit)="SetST('SetST02')" [formGroup]="formSetSTPaper2" class="flex flex-col">
+            <span>ประเมินรอบแก้ไข</span>
+            <nav class="flex">
+              <nav class="w-full flex items-center gap-1 bg-green-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve02" value="2">
+                <label for="approve02">ผ่าน</label>
+              </nav>
+              <nav class="w-full flex items-center gap-1 bg-red-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve02n" value="-2">
+                <label for="approve02n">ไม่ผ่าน</label>
+              </nav>
+            </nav>
+            <button [disabled]="formSetSTPaper2.invalid" class="bt-blue" type="submit">บันทึก</button>
+          </form>
+          <form (ngSubmit)="SetST('SetST03')" [formGroup]="formSetSTPaper3" class="flex flex-col">
+            <span>ประเมินรอบสมบูรณ์</span>
+            <nav class="flex">
+              <nav class="w-full flex items-center gap-1 bg-green-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve03" value="3">
+                <label for="approve03">ผ่าน</label>
+              </nav>
+              <nav class="w-full flex items-center gap-1 bg-red-200 p-2 rounded-md">
+                <input formControlName="status" type="radio" id="approve03n" value="-3">
+                <label for="approve03n">ไม่ผ่าน</label>
+              </nav>
+            </nav>
+            <button [disabled]="formSetSTPaper3.invalid" class="bt-blue" type="submit">บันทึก</button>
+          </form>
+        </nav>
+        <nav class="pageEvaluator">
+          <span class="text-xl font-black">ประเมินรอบคัดเลือก</span>
+          <span *ngIf="!item.file" class="w-full bg-orange-500 text-xl text-white p-2 text-center font-black">ยังไม่อัพโหลดไฟล์</span>
+          <a *ngIf="item.file" download="paper.pdf" href="{{item.file}}" class="bt-blue openFile" type="button"><i
+              class="fa-solid fa-download"></i>
+            เปิดไฟล์ของผู้ส่งบทความ</a>
+          <span>ผู้ประเมิน</span>
+          <table>
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>ชื่อ-สกุล</th>
+                <th>ไฟล์</th>
+                <th>คำแนะนำ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of L01;index as i">
+                <td>{{i + 1}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                  <!-- <a *ngIf="item.file" download="paper.pdf" href="{{item.file}}"
+                                        class="bt-blue openFile" type="button"><i class="fa-solid fa-download"></i>
+                                        เปิดไฟล์</a> -->
+                  <nav class="fileL01">ยังไม่ได้ประเมิน</nav>
+                  <span *ngIf="fileScore01[i] != false && fileScore01[i] != true">ยังไม่ได้ประเมิน</span>
+                  <nav *ngIf="fileScore01[i] == false && item.email == user.email">
+                    <button (click)="OE('ประเมินรอบคัดเลือก','paper_evaluator')" class="bt-orange"
+                      type="button">การประเมิน</button>
+                  </nav>
+                  <nav *ngIf="user.role == 'evaluator'" class="socreTotal">
+                    <span>ผลคะแนน: </span>
+                  </nav>
+                </td>
+                <td>
+                  <nav class="readNote">
+                    <!-- <textarea rows="4">{{item.note}}</textarea> -->
+                  </nav>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav *ngIf="round > 0" class="flex flex-col">
+            <span class="text-xl font-black">ประเมินรอบแก้ไข</span>
+            <span *ngIf="!item.file2" class="w-full bg-orange-500 text-xl text-white p-2 text-center font-black">ยังไม่อัพโหลดไฟล์</span>
+            <a *ngIf="item.file2" download="paper.pdf" href="{{item.file2}}" class="bt-blue openFile" type="button"><i
+                class="fa-solid fa-download"></i>
+              เปิดไฟล์ของผู้ส่งบทความ</a>
+            <table>
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>ชื่อ-สกุล</th>
+                  <th>ไฟล์</th>
+                  <th>คำแนะนำ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of L01;index as i">
+                  <td>{{i + 1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>
+                    <!-- <a *ngIf="item.file" download="paper.pdf" href="{{item.file}}"
+                                          class="bt-blue openFile" type="button"><i class="fa-solid fa-download"></i>
+                                          เปิดไฟล์</a> -->
+                    <nav class="fileL02">ยังไม่ได้ประเมิน</nav>
+                    <span *ngIf="fileScore02[i] != false && fileScore02[i] != true">ยังไม่ได้ประเมิน</span>
+                    <nav *ngIf="fileScore02[i] == false && item.email == user.email">
+                      <button (click)="OE('ประเมินรอบแก้ไข','paper_evaluator2')" class="bt-orange"
+                        type="button">การประเมิน</button>
+                    </nav>
+                    <nav *ngIf="user.role == 'evaluator'" class="socreTotal2">
+                      <span>ผลคะแนน: </span>
+                    </nav>
+                  </td>
+                  <td>
+                    <nav class="readNote2">
+                      <!-- <textarea rows="4">{{item.note}}</textarea> -->
+                    </nav>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </nav>
+          <nav *ngIf="round > 1" class="flex flex-col">
+            <span class="text-xl font-black">ประเมินฉบับสมบูรณ์</span>
+            <span *ngIf="!item.file3" class="w-full bg-orange-500 text-xl text-white p-2 text-center font-black">ยังไม่อัพโหลดไฟล์</span>
+            <a *ngIf="item.file3" download="paper.pdf" href="{{item.file3}}" class="bt-blue openFile" type="button"><i
+                class="fa-solid fa-download"></i>
+              เปิดไฟล์ของผู้ส่งบทความ</a>
+            <table>
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>ชื่อ-สกุล</th>
+                  <th>ไฟล์</th>
+                  <th>คำแนะนำ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of L01;index as i">
+                  <td>{{i + 1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>
+                    <!-- <a *ngIf="item.file" download="paper.pdf" href="{{item.file}}"
+                                          class="bt-blue openFile" type="button"><i class="fa-solid fa-download"></i>
+                                          เปิดไฟล์</a> -->
+                    <nav class="fileL03">ยังไม่ได้ประเมิน</nav>
+                    <span *ngIf="fileScore03[i] != false && fileScore03[i] != true">ยังไม่ได้ประเมิน</span>
+                    <nav *ngIf="fileScore03[i] == false && item.email == user.email">
+                      <button (click)="OE('ประเมินรอบสมบูรณ์','paper_evaluator3')" class="bt-orange"
+                        type="button">การประเมิน</button>
+                    </nav>
+                    <nav *ngIf="user.role == 'evaluator'" class="socreTotal3">
+                      <span>ผลคะแนน: </span>
+                    </nav>
+                  </td>
+                  <td>
+                    <nav class="readNote3">
+                      <!-- <textarea rows="4">{{item.note}}</textarea> -->
+                    </nav>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </nav>
+        </nav>
+        <!-- <nav class="paperLog">
+                    <nav class="log">
+                        <table class="tableLog">
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>วันที่ส่ง</th>
+                                    <th>ไฟล์</th>
+                                    <th>ผลประเมิน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of log;index as i">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{NameDate(item.date)}}</td>
+                                    <td>
+                                        <nav class="tdManage">
+                                            <nav (click)="OpenFile(item.file)" class="viewEvaluator">
+                                                <i class="fa-solid fa-file-lines"></i>
+                                            </nav>
+                                        </nav>
+                                    </td>
+                                    <td>
+                                        <nav (click)="OpenPopup(item.no)" class="viewEvaluator">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </nav>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </nav>
+                </nav> -->
+      </nav>
+    </nav>
+  </main>
+</nav>
+<!-- popup -->
+<nav id="popup" class="popupBox" style="display: none;">
+  <nav (click)="ClosePopup()" class="backClose"></nav>
+  <nav class="formSet">
+    <nav (click)="ClosePopup()" class="formClose">
+      <i class="fa-solid fa-square-xmark"></i>
+    </nav>
+    <form (ngSubmit)="AddScore()" [formGroup]="formAddScore" class="flex flex-col">
+      <span id="adddScoreTitle">ประเมินรอบคัดเลือก</span>
+      <nav class="grid grid-cols-6">
+        <span class="w-60">หัวข้อ</span>
+        <span class="text-center">1</span>
+        <span class="text-center">2</span>
+        <span class="text-center">3</span>
+        <span class="text-center">4</span>
+        <span class="text-center">5</span>
+      </nav>
+      <nav *ngFor="let item of Q;index as i" class="flex flex-col">
+        <nav *ngIf="item.question01" class="grid grid-cols-6">
+          <span class="w-60">1.{{item.question01}}</span>
+          <input formControlName="at01" value=1 type="radio" id="q01_1">
+          <input formControlName="at01" value=2 type="radio" id="q01_2">
+          <input formControlName="at01" value=3 type="radio" id="q01_3">
+          <input formControlName="at01" value=4 type="radio" id="q01_4">
+          <input formControlName="at01" value=5 type="radio" id="q01_5">
+        </nav>
+        <nav *ngIf="item.question02" class="grid grid-cols-6">
+          <span class="w-60">2.{{item.question02}}</span>
+          <input formControlName="at02" value=1 type="radio" id="q02_1">
+          <input formControlName="at02" value=2 type="radio" id="q02_2">
+          <input formControlName="at02" value=3 type="radio" id="q02_3">
+          <input formControlName="at02" value=4 type="radio" id="q02_4">
+          <input formControlName="at02" value=5 type="radio" id="q02_5">
+        </nav>
+        <nav *ngIf="item.question03" class="grid grid-cols-6">
+          <span class="w-60">3.{{item.question03}}</span>
+          <input formControlName="at03" value=1 type="radio" id="q03_1">
+          <input formControlName="at03" value=2 type="radio" id="q03_2">
+          <input formControlName="at03" value=3 type="radio" id="q03_3">
+          <input formControlName="at03" value=4 type="radio" id="q03_4">
+          <input formControlName="at03" value=5 type="radio" id="q03_5">
+        </nav>
+        <nav *ngIf="item.question04" class="grid grid-cols-6">
+          <span class="w-60">4.{{item.question04}}</span>
+          <input formControlName="at04" value=1 type="radio" id="q04_1">
+          <input formControlName="at04" value=2 type="radio" id="q04_2">
+          <input formControlName="at04" value=3 type="radio" id="q04_3">
+          <input formControlName="at04" value=4 type="radio" id="q04_4">
+          <input formControlName="at04" value=5 type="radio" id="q04_5">
+        </nav>
+        <nav *ngIf="item.question05" class="grid grid-cols-6">
+          <span class="w-60">5.{{item.question05}}</span>
+          <input formControlName="at05" value=1 type="radio" id="q05_1">
+          <input formControlName="at05" value=2 type="radio" id="q05_2">
+          <input formControlName="at05" value=3 type="radio" id="q05_3">
+          <input formControlName="at05" value=4 type="radio" id="q05_4">
+          <input formControlName="at05" value=5 type="radio" id="q05_5">
+        </nav>
+        <nav *ngIf="item.question06" class="grid grid-cols-6">
+          <span class="w-60">6.{{item.question06}}</span>
+          <input formControlName="at06" value=1 type="radio" id="q06_1">
+          <input formControlName="at06" value=2 type="radio" id="q06_2">
+          <input formControlName="at06" value=3 type="radio" id="q06_3">
+          <input formControlName="at06" value=4 type="radio" id="q06_4">
+          <input formControlName="at06" value=5 type="radio" id="q06_5">
+        </nav>
+        <nav *ngIf="item.question07" class="grid grid-cols-6">
+          <span class="w-60">7.{{item.question07}}</span>
+          <input formControlName="at07" value=1 type="radio" id="q07_1">
+          <input formControlName="at07" value=2 type="radio" id="q07_2">
+          <input formControlName="at07" value=3 type="radio" id="q07_3">
+          <input formControlName="at07" value=4 type="radio" id="q07_4">
+          <input formControlName="at07" value=5 type="radio" id="q07_5">
+        </nav>
+        <nav *ngIf="item.question08" class="grid grid-cols-6">
+          <span class="w-60">8.{{item.question08}}</span>
+          <input formControlName="at08" value=1 type="radio" id="q08_1">
+          <input formControlName="at08" value=2 type="radio" id="q08_2">
+          <input formControlName="at08" value=3 type="radio" id="q08_3">
+          <input formControlName="at08" value=4 type="radio" id="q08_4">
+          <input formControlName="at08" value=5 type="radio" id="q08_5">
+        </nav>
+        <nav *ngIf="item.question09" class="grid grid-cols-6">
+          <span class="w-60">9.{{item.question09}}</span>
+          <input formControlName="at09" value=1 type="radio" id="q09_1">
+          <input formControlName="at09" value=2 type="radio" id="q09_2">
+          <input formControlName="at09" value=3 type="radio" id="q09_3">
+          <input formControlName="at09" value=4 type="radio" id="q09_4">
+          <input formControlName="at09" value=5 type="radio" id="q09_5">
+        </nav>
+        <nav *ngIf="item.question10" class="grid grid-cols-6">
+          <span class="w-60">10.{{item.question10}}</span>
+          <input formControlName="at10" value=1 type="radio" id="q10_1">
+          <input formControlName="at10" value=2 type="radio" id="q10_2">
+          <input formControlName="at10" value=3 type="radio" id="q10_3">
+          <input formControlName="at10" value=4 type="radio" id="q10_4">
+          <input formControlName="at10" value=5 type="radio" id="q10_5">
+        </nav>
+      </nav>
+      <label for="">คำแนะนำ</label>
+      <textarea formControlName="note" id="" rows="6"></textarea>
+      <label for="">ไฟล์</label>
+      <input (change)="Base64($event)" type="file" accept="application/pdf">
+      <button [disabled]="formAddScore.invalid" class="bt-blue" type="submit">ประเมิน</button>
+    </form>
+  </nav>
+</nav>

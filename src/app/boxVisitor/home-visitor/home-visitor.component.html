@@ -1,0 +1,74 @@
+<header>
+    <app-header-visitor></app-header-visitor>
+</header>
+<main>
+    <nav class="titleBox">
+        <nav class="backgroundTitleBox"></nav>
+        <span class="title01">ร่วมส่งบทความ</span>
+        <span class="title02">Acadamic Conference</span>
+    </nav>
+    <p class="inviteText">
+        We invite you to submit academic articles for the competition<br>
+        to showcase your work and exchange knowledge with experts.
+    </p>
+    <nav class="menuButton">
+        <nav routerLink="/callForPaper-visitor" class="transpirentBT">ดูเวทีประกวด</nav>
+        <nav routerLink="/signin" class="goldenBT">SUBMISSION</nav>
+        <!-- <nav class="timerBox">
+            <nav class="timer">
+                <span class="timerTitle">START IN</span>
+                <nav class="timerShow">
+                    <span class="num">00</span>
+                    <span class="timerText">D</span>
+                </nav>
+                <nav class="lineWhite"></nav>
+                <nav class="timerShow">
+                    <span class="num">00</span>
+                    <span class="timerText">H</span>
+                </nav>
+                <nav class="lineWhite"></nav>
+                <nav class="timerShow">
+                    <span class="num">00</span>
+                    <span class="timerText">M</span>
+                </nav>
+            </nav>
+        </nav> -->
+    </nav>
+    <nav class="fr2">
+        <nav class="boxInfr01">
+            <i class="svg-star"></i>
+            <i class="svg-lamp"></i>
+            <span class="inText01">IGNITE YOUR</span>
+            <span class="inText02">CAPABILITY</span>
+            <span class="inText03">AT OUR CONFERENCE</span>
+            <span class="inText04">MANAGEMENT SYSTEM</span>
+        </nav>
+        <nav class="boxInfr02">
+            <nav class="paperBox">
+                <i class="svg-paper"></i>
+            </nav>
+            <i class="svg-brand"></i>
+            <i class="svg-person"></i>
+        </nav>
+    </nav>
+    <nav class="noteBox">
+        <table class="noteList">
+            <thead>
+                <tr>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of note">
+                    <td (click)="ViewPDF(item.file)" class="openPDF">{{item.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <nav class="viewPDF">
+            <iframe id="iframe" class="iframe" height="100%" width="100%" src="" frameborder=" 0"></iframe>
+        </nav>
+    </nav>
+    <nav class="callOther">
+        <app-cfp-noheader></app-cfp-noheader>
+    </nav>
+</main>

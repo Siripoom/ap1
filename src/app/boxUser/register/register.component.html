@@ -1,0 +1,63 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="userBox">
+            <nav class="tableTitle">
+                <nav class="left">
+                    <span class="titleText">สมัครส่งผลงาน</span>
+                </nav>
+            </nav>
+            <nav class="paperList">
+                <nav *ngFor="let item of data" class="list">
+                    <nav class="paperDetail">
+                        <nav class="paperName">
+                            <span>{{item.title}}</span>
+                        </nav>
+                        <span class="listText">ประเภท : {{item.types}}</span>
+                        <p class="listText">รายละเอียด : {{item.text}}</p>
+                    </nav>
+                </nav>
+                <hr style="width: 80%;">
+                <form (ngSubmit)="Register()" [formGroup]="formRegister" class="formRegister">
+                    <nav class="addfile">
+                        <label for="">ลิงค์ไฟล์</label>
+                        <!-- <input formControlName="file" class="inputBox" type="url"> -->
+                        <input (change)="Base64($event)" class="inputBox" type="file" accept="application/pdf">
+                        <!-- <nav class="selectButton"> -->
+                        <!-- <button (click)="OpenPopup()" class="bt-orange" type="button">แสดงพรีวิว</button> -->
+                        <!-- <button (click)="OpenFile()" class="bt-blue" type="button">เปิดไฟล์</button> -->
+                        <a download="paper.pdf" href={{formRegister.value.file}} class="bt-blue dow"
+                            type="button">โหลดไฟล์</a>
+                        <!-- </nav> -->
+                        <button [disabled]="formRegister.invalid" class="bt-sky" type="submit">ส่งผลงาน</button>
+                    </nav>
+                    <nav class="registerDetail">
+                        <label for="">ชื่อผู้สมัคร : {{user.title + user.fname + ' ' + user.lname}}</label>
+                        <label *ngIf="user.role == 'sender'" for="">บทบาท : ผู้ส่งบทความ</label>
+                        <label *ngIf="user.role == 'evaluator'" for="">บทบาท : ผู้ประเมิน</label>
+                        <label *ngIf="user.role == 'admin'" for="">บทบาท : ผู้ดูแล</label>
+                        <label *ngIf="user.role == 'developer'" for="">บทบาท : นักพัฒนา</label>
+                        <label for="">สาขา : {{user.fields}}</label>
+                        <label for="">คณะ : {{user.faculty}}</label>
+                        <label for="">มหาวิทยาลัย : {{user.university}}</label>
+                    </nav>
+                </form>
+            </nav>
+        </nav>
+    </main>
+</nav>
+<!-- popup -->
+<nav id="popup" class="popupBox" style="display: none;">
+    <nav (click)="ClosePopup()" class="backClose"></nav>
+    <nav class="formSet">
+        <nav (click)="ClosePopup()" class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav>
+        <iframe id="pdf" width="100%" height="800px" style="border: none;" allow="autoplay"></iframe>
+    </nav>
+</nav>

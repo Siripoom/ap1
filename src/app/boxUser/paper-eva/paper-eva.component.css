@@ -1,0 +1,374 @@
+.outLine {
+  background: whitesmoke;
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.userBox {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 30px;
+  padding: 10px 0px;
+  border-radius: 25px;
+  height: calc(100vh - 165px);
+}
+
+.tableTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search {
+  border-radius: 10px;
+  padding: 0px 20px;
+  background: #011b53;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  transition: all 0.5s ease-in-out 0s;
+  border: unset;
+  cursor: pointer;
+}
+
+.search:hover {
+  background: #ff9000;
+}
+
+.search:focus {
+  background: #ff9000;
+}
+
+.searchBox {
+  border: 2px solid #011b53;
+  font-size: 16px;
+  text-align: center;
+  width: 300px;
+  padding: 5px 0px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.searchBox:hover {
+  border: 2px solid #ff9000;
+}
+
+.searchBox:focus {
+  outline: unset;
+  border: 2px solid #ff9000;
+}
+
+.submit {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #011b53;
+  color: white;
+  border: 2px solid #011b53;
+  transition: all 0.5s ease-in-out 0s;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: #ff9000;
+  border: 2px solid #ff9000;
+}
+
+form {
+  display: flex;
+}
+
+.paperList {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.paperDetail {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.manage {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  gap: 5px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.edit,
+.del {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.edit:hover {
+  color: blue;
+}
+
+.del:hover {
+  color: red;
+}
+
+.listText {
+  margin-left: 30px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.paperName {
+  display: flex;
+  background: #011b53;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px;
+  margin-bottom: 10px;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.add:hover {
+  background: #011b53;
+  color: white;
+}
+
+.add:hover > .fa-plus {
+  color: white;
+}
+
+.fa-plus {
+  color: #011b53;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.popupBox {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.formSet {
+  position: sticky;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding: 40px;
+  gap: 5px;
+}
+
+.backClose {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.formClose {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.formTitle {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: unset;
+  background: #011b533d;
+}
+
+.registerDetail {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 30px;
+}
+
+.selectButton {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.infoBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+p {
+  margin: unset;
+}
+
+.tableLog {
+  width: 90%;
+  margin: auto;
+  border-spacing: 0px;
+  margin-bottom: 30px;
+}
+
+.tableLog th,
+.tableLog td {
+  text-align: center;
+}
+
+.tableLog th {
+  font-size: 18px;
+  font-weight: 900;
+  background: lightgray;
+  padding: 5px 0px;
+}
+.tableLog td {
+  background: snow;
+  padding: 15px 0px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.viewEvaluator {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.viewEvaluator:hover {
+  color: blue;
+}
+
+.tableEvaluator {
+  width: 90%;
+  margin: auto;
+  border-spacing: 0px;
+  margin-bottom: 30px;
+}
+
+.tableEvaluator th,
+.tableEvaluator td {
+  text-align: center;
+}
+
+.tableEvaluator th {
+  font-size: 18px;
+  font-weight: 900;
+  background: lightgray;
+  padding: 5px 0px;
+}
+.tableEvaluator td {
+  background: snow;
+  padding: 15px 0px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.tdManage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.addFile {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageEvaluator {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+td {
+  text-align: center;
+}
+
+.openFile {
+  text-align: center;
+  text-decoration: unset;
+}
+
+textarea {
+  border: 0.5px dotted blue;
+}
+
+.grid {
+  display: grid !important;
+}

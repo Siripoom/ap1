@@ -1,0 +1,100 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="userBox">
+            <nav *ngFor="let item of data" class="paperList">
+                <nav class="paperName">
+                    <span>{{item.titleNews}}</span>
+                </nav>
+                <nav *ngFor="let item of data" class="infoBox">
+                    <nav class="list">
+                        <span class="listText">ประเภท : {{item.typesNews}}</span>
+                        <p class="listText">รายละเอียด : {{item.textNews}}</p>
+                        <span *ngIf="item.status == 0" class="listText">สถานะ : ระหว่างดำเนินการ</span>
+                        <span *ngIf="item.status == 1" class="listText">สถานะ : สิ้นสุดการประเมิน</span>
+                        <span class="listText">ผลประเมิน : {{item.score}}</span>
+                    </nav>
+                    <nav class="registerDetail">
+                        <label for="">ชื่อผู้สมัคร : {{item.name}}</label>
+                        <label *ngIf="item.role == 'sender'" for="">บทบาท : ผู้ส่งบทความ</label>
+                        <label *ngIf="item.role == 'evaluator'" for="">บทบาท : ผู้ประเมิน</label>
+                        <label *ngIf="item.role == 'admin'" for="">บทบาท : ผู้ดูแล</label>
+                        <label *ngIf="item.role == 'developer'" for="">บทบาท : นักพัฒนา</label>
+                        <label for="">สาขา : {{item.fields}}</label>
+                        <label for="">คณะ : {{item.faculty}}</label>
+                        <label for="">มหาวิทยาลัย : {{item.university}}</label>
+                    </nav>
+                </nav>
+                <hr style="width: 80%;">
+                <nav class="paperLog">
+                    <nav class="log">
+                        <table class="tableLog">
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>วันที่ส่ง</th>
+                                    <th>ไฟล์</th>
+                                    <th>ผลประเมิน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of log;index as i">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{NameDate(item.date)}}</td>
+                                    <td>
+                                        <nav class="tdManage">
+                                            <nav (click)="OpenFile(item.file)" class="viewEvaluator">
+                                                <i class="fa-solid fa-file-lines"></i>
+                                            </nav>
+                                        </nav>
+                                    </td>
+                                    <td>
+                                        <nav (click)="OpenPopup(item.no)" class="viewEvaluator">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </nav>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </nav>
+                </nav>
+            </nav>
+        </nav>
+    </main>
+</nav>
+<!-- popup -->
+<nav id="popup" class="popupBox" style="display: none;">
+    <nav (click)="ClosePopup()" class="backClose"></nav>
+    <nav class="formSet">
+        <nav (click)="ClosePopup()" class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav>
+        <table class="tableEvaluator">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ผู้ประเมิน</th>
+                    <th>วันที่ประเมิน</th>
+                    <th>ไฟล์</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of evaluator;index as i">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.date}}</td>
+                    <td>
+                        <nav (click)="OpenFile(item.file)" class="viewEvaluator">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </nav>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nav>
+</nav>

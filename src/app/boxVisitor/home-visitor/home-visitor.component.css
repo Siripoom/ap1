@@ -1,0 +1,265 @@
+main {
+  background: #08244d;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: start; */
+  /* height: 100%; */
+}
+
+.titleBox {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.backgroundTitleBox {
+  z-index: -1;
+  position: absolute;
+  background: #ff9000;
+  width: 270px;
+  height: 50px;
+  top: 65px;
+  left: 15px;
+}
+
+.title01 {
+  color: white;
+  font-size: 90px;
+}
+
+.title02 {
+  color: #ff9000;
+  font-size: 22px;
+}
+
+.inviteText {
+  color: white;
+  margin-left: 100px;
+}
+
+.menuButton {
+  display: flex;
+  gap: 16px;
+  margin-left: 100px;
+  position: sticky;
+  width: calc(100% - 100px);
+  padding-bottom: 200px;
+}
+
+.transpirentBT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  color: white;
+  border: 4px solid white;
+  transition: all 0.5s ease-in-out 0s;
+  padding: 10px 0px;
+  width: 120px;
+  cursor: pointer;
+}
+
+.transpirentBT:hover {
+  background: #ff9000;
+  color: black;
+  border: 4px solid transparent;
+}
+
+.goldenBT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff9000;
+  color: black;
+  border: 4px solid #ff9000;
+  transition: all 0.5s ease-in-out 0s;
+  padding: 10px 0px;
+  width: 120px;
+  cursor: pointer;
+}
+
+.goldenBT:hover {
+  background: white;
+  border: 4px solid transparent;
+}
+
+.timerBox {
+  display: flex;
+  width: 90%;
+  justify-content: right;
+  position: absolute;
+  top: -100px;
+  right: 200px;
+}
+
+.timer {
+  background: #e8e8e8;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timerTitle {
+  color: #ff9000;
+  font-size: 10px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.timerShow {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.lineWhite {
+  display: flex;
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+
+.num {
+  font-size: 60px;
+  color: #08244d;
+}
+
+.timerText {
+  color: #08244d;
+}
+
+.fr2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: calc(100% - 200px);
+  padding: 30px 100px;
+  background: white;
+}
+
+.boxInfr01 {
+  position: sticky;
+  font-family: "Sriracha";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxInfr01 span {
+  position: absolute;
+}
+
+.inText01 {
+  top: 0px;
+  font-size: 80px;
+  font-weight: 900;
+  color: #011b53;
+}
+
+.inText02 {
+  top: 60px;
+  font-size: 80px;
+  font-weight: 900;
+  color: #011b53;
+}
+
+.inText03 {
+  top: 160px;
+  font-size: 42px;
+  color: #011b53;
+}
+
+.inText04 {
+  top: 195px;
+  font-size: 42px;
+  color: #011b53;
+}
+
+.svg-star {
+  position: absolute;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  left: 0px;
+}
+
+.svg-lamp {
+  position: absolute;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  right: 0px;
+}
+
+.svg-paper {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+}
+
+.boxInfr02 {
+  position: sticky;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.svg-brand {
+  display: flex;
+  width: 200px;
+  height: 256px;
+  border-radius: 30px;
+}
+
+.svg-person {
+  display: flex;
+  width: 200px;
+  height: 256px;
+  border-radius: 30px;
+}
+
+.paperBox {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50px;
+  top: -15px;
+  background: #ff9000;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.callOther {
+  width: max-content;
+  height: max-content;
+}
+
+.noteBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.noteList {
+  background: white;
+  padding: 30px;
+  height: min-content;
+}
+
+.noteList td {
+  border-bottom: 2px solid lightgray;
+}
+
+.viewPDF {
+  background: white;
+  padding: 30px;
+  min-height: 400px;
+}
+
+.openPDF {
+  cursor: pointer;
+}

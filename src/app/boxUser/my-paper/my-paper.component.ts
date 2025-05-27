@@ -1,0 +1,176 @@
+import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from "../../boxNav/header/header.component";
+import { SideBarComponent } from "../../boxNav/side-bar/side-bar.component";
+import { NgFor, NgIf } from '@angular/common';
+import { FormBuilder } from '@angular/forms';
+import { HttpService } from '../../service/http.service';
+import Swal from 'sweetalert2';
+
+@Component({
+  selector: 'app-my-paper',
+  templateUrl: './my-paper.component.html',
+  styleUrl: './my-paper.component.css',
+  imports: [
+    HeaderComponent,
+    SideBarComponent,
+    NgFor,
+    NgIf
+],
+})
+export class MyPaperComponent implements OnInit {
+  // ตัวแปร
+  php:any = 'user/myPaper'
+  table:any = 'paper'
+  user:any
+  data:any
+  length:number = 0
+  page:number = 1
+  pageLength:number = 20
+  maxPage:any = 1
+  formLength:any
+  formFetch:any
+  formDel:any
+  // ฟอร์ม
+  Form() {
+    this.formLength = this.fb.group({
+      header:[''],
+      table:[''],
+      email:[''],
+    })
+    this.formFetch = this.fb.group({
+      header:[''],
+      table:[''],
+      email:[''],
+      start:[''],
+      stop:[''],
+      page:[''],
+    })
+    this.formDel = this.fb.group({
+      header:[''],
+      table:[''],
+      no:[''],
+    })
+  }
+  // เรียก
+  constructor(
+    private fb:FormBuilder,
+    private api:HttpService
+  ){}
+  // ฟังก์ชัน
+  ngOnInit(): void {
+    this.user = JSON.parse(sessionStorage.getItem('user')+'')
+    this.Form()
+    this.Length()
+  }
+  Length() {
+    this.formLength.get('header').setValue('length')
+    this.formLength.get('table').setValue(this.table)
+    this.formLength.get('email').setValue(this.user.email)
+    this.api.POST(this.php,this.formLength.value).subscribe({
+      next:(result:any)=>{
+        this.length = result
+        if (20 % this.pageLength > 0) {
+          this.maxPage = parseInt(((this.length / this.pageLength) + 1) + '')
+        } else {
+          this.maxPage = parseInt((this.length / this.pageLength) + '')
+        }
+        this.Fetch(0,20)
+      }
+    })
+  }
+  Fetch(start:number,stop:number) {
+    this.formFetch.get('header').setValue('fetch')
+    this.formFetch.get('table').setValue(this.table)
+    this.formFetch.get('email').setValue(this.user.email)
+    this.formFetch.get('start').setValue(start)
+    this.formFetch.get('stop').setValue(stop)
+    this.api.POST(this.php,this.formFetch.value).subscribe({
+      next:(result:any)=>{
+        if (result) {
+          this.data = result
+        } else {
+          this.data = []
+        }
+      }
+    })
+  }
+  Minus() {
+    this.page -= 1
+    if (this.page < 1) {
+      if (this.maxPage == 0) {
+        this.page = 1
+      } else {
+        this.page = this.maxPage
+      }
+    }
+    if (this.page == 1) {
+      this.Fetch(0,20)
+    } else {
+      this.Fetch(this.page * 20,(this.page * 20) + 20)
+    }
+  }
+  Plus() {
+    this.page +=1
+    if (this.page >= this.maxPage) {
+      this.page = 1
+    }
+    if (this.page == 1) {
+      this.Fetch(0,20)
+    } else {
+      this.Fetch(this.page * 20,(this.page * 20) + 20)
+    }
+  }
+  Cartificate(no:any) {
+    sessionStorage.setItem('no',no)
+    document.location.href = '/certificate'
+  }
+  View(no:any) {
+    sessionStorage.setItem('no',no)
+    document.location.href = '/paper'
+  }
+  Del(no:any) {
+      Swal.fire({
+        title: "ลบข้อมูลนี้หรือไม่?",
+        confirmButtonText: "ยืนยัน",
+        cancelButtonText: "ยกเลิก",
+        showCancelButton:true,
+        icon: "info",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.formDel.get('header').setValue('del')
+          this.formDel.get('table').setValue(this.table)
+          this.formDel.get('no').setValue(no)
+          this.api.POST(this.php,this.formDel.value).subscribe({
+            next:(result:any)=>{
+              if (result) {
+                switch (result) {
+                  case 'success':
+                    if (this.page == 1) {
+                      this.Fetch(0,20)
+                    } else {
+                      this.Fetch(this.page * 20,(this.page * 20) + 20)
+                    }
+                    Swal.fire({
+                      title: "ดำเนินการสำเร็จ",
+                      icon: "success",
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+                    break;
+                }
+              }
+            }
+          })
+        }
+      });
+    }
+  NameDate(date:any) {
+    let yyyy = date.substring(0,4)
+    let mm = date.substring(5,7)
+    let dd = date.substring(8,10)
+    console.log(yyyy)
+    console.log(mm)
+    console.log(dd)
+    return dd + ' ' + this.api.MonthName(mm) + ' ' + yyyy
+  }
+}

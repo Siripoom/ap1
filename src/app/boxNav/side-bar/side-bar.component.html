@@ -1,0 +1,67 @@
+<nav id="sidebarBox" class="sidebarBox">
+    <nav id="sideBarMenu" class="sideBarMenu">
+        <nav routerLink="/home" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-square"></i>
+            </nav>
+            <span id="textNews">ข่าวสาร</span>
+        </nav>
+        <nav routerLink="/allPaper" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-list"></i>
+            </nav>
+            <span id="textAllPaper">บทความทั้งหมด</span>
+        </nav>
+        <nav *ngIf="user.role != 'evaluator'" routerLink="/myPaper" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-pen"></i>
+            </nav>
+            <span id="textMyPaper">บทความของฉัน</span>
+        </nav>
+        <nav *ngIf="user.role == 'developer' || user.role == 'evaluator'" routerLink="/sended" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-file"></i>
+            </nav>
+            <span id="textSended">ประเมินผลงาน</span>
+        </nav>
+        <nav *ngIf="user.role != 'evaluator'" routerLink="/award" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </nav>
+            <span id="textAward">ประกาศผล</span>
+        </nav>
+        <nav routerLink="/contact" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-user"></i>
+            </nav>
+            <span id="textContext">ติดต่อผู้ดูแล</span>
+        </nav>
+        <nav *ngIf="user.role == 'developer'" routerLink="/contactMassage" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-envelope"></i>
+            </nav>
+            <span id="textEmail">ผู้มาติดต่อ</span>
+        </nav>
+        <nav *ngIf="user.role == 'developer'" routerLink="/manageWelcome" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-scroll"></i>
+            </nav>
+            <span id="textManageWelcome">จัดการใบปริว</span>
+        </nav>
+        <nav *ngIf="user.role == 'developer'" routerLink="/user" class="menu">
+            <nav class="icon">
+                <i class="fa-solid fa-gear"></i>
+            </nav>
+            <span id="textUser">จัดการสมาชิก</span>
+        </nav>
+    </nav>
+    <nav (click)="Switch()" id="switchSidebar" class="switchSidebar">
+        <nav id="showRole" class="showRole">
+            <span *ngIf="user.role == 'sender'">ผู้ส่งบทความ</span>
+            <span *ngIf="user.role == 'evaluator'">ผู้ประเมิน</span>
+            <span *ngIf="user.role == 'admin'">แอดมิน</span>
+            <span *ngIf="user.role == 'developer'">นักพัฒนา</span>
+        </nav>
+        <i class="fa-solid fa-bars"></i>
+    </nav>
+</nav>

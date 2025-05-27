@@ -1,0 +1,20 @@
+.outLine {
+  background: whitesmoke;
+  display: grid;
+  grid-template-columns: max-content auto;
+  justify-items: center;
+  /* height: calc(100vh - 81px); */
+}
+
+main {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 81px);
+  overflow-y: scroll;
+  /* padding-top: 100px; */
+}
+
+.addContact {
+  width: 100%;
+}

@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  src: url(/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: noto-sans-thai;
+  unicode-range: U+0E00 –U + 0e7F;
+  src: url(/fonts/NotoSansThai-Regular.ttf);
+}
+
+@font-face {
+  font-family: Sriracha;
+  font-style: normal;
+  src: url(/fonts/Sriracha-Regular.ttf);
+}
+
+body {
+  margin: 0px;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100vw;
+  font-family: "Roboto", "noto-sans-thai";
+  overflow-x: hidden;
+}
+
+header {
+  width: 100vw;
+  height: 81px;
+}
+
+.outLine {
+  display: grid;
+  grid-template-columns: 250px 100%;
+}
+
+aside {
+  /* height: calc(100vh - 81px); */
+}
+
+main {
+  /* width: 100vw; */
+  /* height: max-content; */
+}
+
+.bt-blue {
+  background: #011b53;
+  border: unset;
+  font-size: 18px;
+  font-weight: 900;
+  color: white;
+  padding: 5px 0px;
+  transition: all 0.5s ease-in-out 0s;
+  cursor: pointer;
+}
+
+.bt-blue:hover {
+  background: #0035a8;
+}
+
+.bt-blue:disabled {
+  cursor: not-allowed;
+  background: lightgray;
+}
+
+.bt-orange {
+  background: orange;
+  border: unset;
+  font-size: 18px;
+  font-weight: 900;
+  color: white;
+  padding: 5px 0px;
+  transition: all 0.5s ease-in-out 0s;
+  cursor: pointer;
+}
+
+.bt-orange:hover {
+  background: #d47c34;
+}
+
+.bt-orange:disabled {
+  cursor: not-allowed;
+  background: lightgray;
+}
+
+.bt-sky {
+  background: rgb(63, 72, 205);
+  border: unset;
+  font-size: 18px;
+  font-weight: 900;
+  color: white;
+  padding: 5px 0px;
+  transition: all 0.5s ease-in-out 0s;
+  cursor: pointer;
+}
+
+.bt-sky:hover {
+  background: rgb(52, 197, 255);
+}
+
+.bt-sky:disabled {
+  cursor: not-allowed;
+  background: lightgray;
+}

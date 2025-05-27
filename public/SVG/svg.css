@@ -1,0 +1,25 @@
+.svg-logo{background: url('logo.svg');}
+.svg-logoBlue{background: url('logoBlue.svg');}
+.svg-logo_ruts{background: url('logo_ruts.svg');}
+.svg-lamp{background: url('lamp.svg');}
+.svg-brand{background: url('brand.svg');}
+.svg-paper{background: url('paper.svg');}
+.svg-person{background: url('person.svg');}
+.svg-star{background: url('star.svg');}
+
+
+.svg-logo,
+.svg-logoBlue,
+.svg-logo_ruts,
+.svg-lamp,
+.svg-brand,
+.svg-paper,
+.svg-person,
+.svg-star
+{
+	background-repeat: no-repeat;
+    background-size: contain;
+	display: inline-block;
+    height: auto;
+    width: auto;
+}

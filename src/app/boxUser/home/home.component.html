@@ -1,0 +1,329 @@
+<header>
+    <app-header></app-header>
+</header>
+<nav class="outLine">
+    <aside>
+        <app-side-bar></app-side-bar>
+    </aside>
+    <main>
+        <nav class="userBox">
+            <nav class="tableTitle">
+                <nav class="left">
+                    <span class="titleText">ข่าวสาร</span>
+                </nav>
+                <nav class="right">
+                    <nav *ngIf="user.role == 'developer' || user.role == 'admin'" (click)="OpenPopup()" class="add">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>เพิ่มข่าวสาร</span>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="paperList">
+                <nav *ngFor="let item of data" class="list">
+                    <nav *ngIf="item.status == 1 && user.role == 'developer' || user.role == 'admin'"
+                        class="viewStatus newsOpen">
+                        <span>เปิดรับสมัคร</span>
+                    </nav>
+                    <nav *ngIf="item.status == 0 && user.role == 'developer' || user.role == 'admin'"
+                        class="viewStatus newsClose">
+                        <span>ปิดรับสมัคร</span>
+                    </nav>
+                    <nav class="manage">
+                        <nav *ngIf="user.role == 'developer' || user.role == 'admin'" class="openQuestion"
+                            (click)="OpenListQuestion(item.no,item.title)">
+                            <i class="fa-solid fa-list-check"></i>
+                        </nav>
+                        <nav *ngIf="user.role == 'developer' || user.role == 'admin'" (click)="EditOpoup(
+                            item.no,
+                            item.title,
+                            item.types,
+                            item.dateS,
+                            item.dateE,
+                            item.status,
+                            item.round,
+                            item.text
+                        )" class="edit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </nav>
+                        <nav *ngIf="user.role == 'developer' || user.role == 'admin'" (click)="Del(item.no)"
+                            class="del">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </nav>
+                    </nav>
+                    <nav (click)="Register(item.no)" class="paperDetail">
+                        <span class="listText">ประเภท : {{item.types}}</span>
+                        <p class="listText">รายละเอียด : {{item.text}}</p>
+                        <nav class="paperName">
+                            <span>{{item.title}}</span>
+                        </nav>
+                    </nav>
+                </nav>
+            </nav>
+        </nav>
+    </main>
+</nav>
+<!-- popup -->
+<nav id="popup" class="popupBox" style="display: none;">
+    <nav (click)="ClosePopup()" class="backClose"></nav>
+    <form (ngSubmit)="Set()" [formGroup]="formSet" class="formSet">
+        <!-- <nav (click)="ClosePopup()" class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav> -->
+        <span id="formTitle" class="formTitle">เพิ่มข่าวสาร</span>
+        <nav class="formGroup">
+            <label for="">ชื่อเรื่อง</label>
+            <input formControlName="title" class="inputBox" type="text">
+        </nav>
+        <nav class="formGroup">
+            <label for="">ประเภทบทความ</label>
+            <select formControlName="types" class="inputBox">
+                <option value="">โปรดเลือก</option>
+                <option *ngFor="let item of types" value="{{item.name}}">{{item.name}}</option>
+            </select>
+        </nav>
+        <nav class="formGroup">
+            <label for="">รอบการประเมิน</label>
+            <select formControlName="round" class="inputBox">
+                <option value="">โปรดเลือก</option>
+                <option value="0">รอบคัดเลือก</option>
+                <option value="1">รอบแก้เนื้อหา</option>
+                <option value="2">รอบฉบับสมบูรณ์</option>
+            </select>
+        </nav>
+        <nav class="formGroup">
+            <label for="">วันเปิดรับ</label>
+            <input formControlName="dateS" class="inputBox" type="date">
+        </nav>
+        <nav class="formGroup">
+            <label for="">วันปิดรับ</label>
+            <input formControlName="dateE" class="inputBox" type="date">
+        </nav>
+        <nav class="formGroup">
+            <label for="">แสดงรายการ</label>
+            <select formControlName="status" class="inputBox">
+                <option value="">โปรดเลือก</option>
+                <option value=1>แสดง</option>
+                <option value=0>ไม่แสดง</option>
+            </select>
+        </nav>
+        <nav class="formGroup">
+            <label for="">รายละเอียด</label>
+            <textarea formControlName="text" class="inputBox" rows="4"></textarea>
+        </nav>
+        <button [disabled]="formSet.invalid" class="bt-blue" type="submit">บันทึก</button>
+    </form>
+    <nav id="evaluatorBox" class="evaluatorBox" style="display: none;">
+        <nav (click)="ClosePopup()" class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav>
+        <span class="formTitle">บทความที่เข้าแข่งขัน</span>
+        <form id="addEvaluator" class="addEvaluator" style="display: none;">
+            <span id="evaNo" class="evaNo"></span>
+            <nav class="inputGroup">
+                <input id="emailEvaluator" class="inputBox" type="search" list="listEvaluator">
+                <button (click)="AddEvaluatorPaper()" class="addEvaluatorBT" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </nav>
+        </form>
+        <table class="evaluator">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ผู้ส่ง</th>
+                    <!-- <th>ผู้ประเมิน</th> -->
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of personEvaluator;index as i">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <!-- <td>{{item.evaluatorName}}</td> -->
+                    <td>
+                        <nav class="iconEva">
+                            <nav (click)="SetEva(item.no)" class="manageTable">
+                                <i class="fa-solid fa-plus"></i>
+                            </nav>
+                            <nav (click)="DelPersonEvaluator(item.no)" class="manageTable">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </nav>
+                        </nav>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nav>
+</nav>
+<nav id="popupQuestion" class="popupBox" style="display: none;">
+    <nav (click)="ClosePopup()" class="backClose"></nav>
+    <form (ngSubmit)="AddQuestion()" [formGroup]="formQuestion" class="formSet">
+        <nav (click)="ClosePopup()" class="formClose">
+            <i class="fa-solid fa-square-xmark"></i>
+        </nav>
+        <span class="formTitle">จัดการคำถาม</span>
+        <nav class="formGroup">
+            <label id="titleQuestion" for="">ชื่อเรื่อง : </label>
+        </nav>
+        <nav id="question01" class="formGroup">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 1</label>
+                    <nav (click)="ShowInput(1)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question01" class="inputBox" type="text">
+            </nav>
+        </nav>
+        <nav id="question02" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 2</label>
+                    <nav (click)="ShowInput(2)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question02" class="inputBox" type="text">
+                <nav (click)="HideInput('question02',2)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question03" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 3</label>
+                    <nav (click)="ShowInput(3)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question03" class="inputBox" type="text">
+                <nav (click)="HideInput('question03',3)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question04" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 4</label>
+                    <nav (click)="ShowInput(4)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question04" class="inputBox" type="text">
+                <nav (click)="HideInput('question04',4)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question05" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 5</label>
+                    <nav (click)="ShowInput(5)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question05" class="inputBox" type="text">
+                <nav (click)="HideInput('question05',5)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question06" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 6</label>
+                    <nav (click)="ShowInput(6)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question06" class="inputBox" type="text">
+                <nav (click)="HideInput('question06',6)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question07" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 7</label>
+                    <nav (click)="ShowInput(7)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question07" class="inputBox" type="text">
+                <nav (click)="HideInput('question07',7)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question08" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 8</label>
+                    <nav (click)="ShowInput(8)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question08" class="inputBox" type="text">
+                <nav (click)="HideInput('question08',8)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question09" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 9</label>
+                    <nav (click)="ShowInput(9)" class="addList">
+                        <i class="fa-solid fa-plus"></i>
+                    </nav>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question09" class="inputBox" type="text">
+                <nav (click)="HideInput('question09',9)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <nav id="question10" class="formGroup" style="display: none;">
+            <nav class="switchList">
+                <nav class="left">
+                    <label for="">คำถามที่ 10</label>
+                </nav>
+            </nav>
+            <nav class="questionInput">
+                <input formControlName="question10" class="inputBox" type="text">
+                <nav (click)="HideInput('question10',10)" class="delList">
+                    <i class="fa-solid fa-xmark"></i>
+                </nav>
+            </nav>
+        </nav>
+        <button [disabled]="formQuestion.invalid" class="bt-blue" type="submit">บันทึก</button>
+    </form>
+</nav>
+<datalist id="listEvaluator">
+    <option value="">โปรดเลือก</option>
+    <option *ngFor="let item of listEvaluator" value="{{item.email}}">{{item.title + item.fname + ' ' + item.lname}}
+    </option>
+</datalist>
