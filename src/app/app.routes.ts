@@ -26,6 +26,7 @@ import { TestComponent } from './boxDeveloper/test/test.component';
 import { ManageWelcomeComponent } from './boxDeveloper/manage-welcome/manage-welcome.component';
 import { SetEvaluatorComponent } from './boxDeveloper/set-evaluator/set-evaluator.component';
 import { ScoreDashboardComponent } from './boxDeveloper/score-dashboard/score-dashboard.component';
+import { EvaluationComponent } from './boxEvaluator/evaluation/evaluation.component';
 
 export const routes: Routes = [
   { path: '', component: HomeVisitorComponent, pathMatch: 'full' },
@@ -55,6 +56,11 @@ export const routes: Routes = [
   // Evaluator
   { path: 'sended', component: SendedComponent, canActivate: [evaluatorGuard] },
   { path: 'grade', component: GradeComponent, canActivate: [evaluatorGuard] },
+  {
+    path: 'evaluation',
+    component: EvaluationComponent,
+    canActivate: [evaluatorGuard],
+  },
   {
     path: 'gradeFinal',
     component: GradeFinalComponent,
