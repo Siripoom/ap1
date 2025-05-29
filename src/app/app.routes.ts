@@ -1,3 +1,4 @@
+// src/app/app.routes.ts
 import { registerGuard } from './guard/register.guard';
 import { developerGuard } from './guard/developer.guard';
 import { GradeComponent } from './boxEvaluator/grade/grade.component';
@@ -27,6 +28,7 @@ import { ManageWelcomeComponent } from './boxDeveloper/manage-welcome/manage-wel
 import { SetEvaluatorComponent } from './boxDeveloper/set-evaluator/set-evaluator.component';
 import { ScoreDashboardComponent } from './boxDeveloper/score-dashboard/score-dashboard.component';
 import { EvaluationComponent } from './boxEvaluator/evaluation/evaluation.component';
+import { IndividualEvaluationComponent } from './boxEvaluator/individual-evaluation/individual-evaluation.component';
 
 export const routes: Routes = [
   { path: '', component: HomeVisitorComponent, pathMatch: 'full' },
@@ -59,6 +61,11 @@ export const routes: Routes = [
   {
     path: 'evaluation',
     component: EvaluationComponent,
+    canActivate: [evaluatorGuard],
+  },
+  {
+    path: 'individual-evaluation',
+    component: IndividualEvaluationComponent,
     canActivate: [evaluatorGuard],
   },
   {

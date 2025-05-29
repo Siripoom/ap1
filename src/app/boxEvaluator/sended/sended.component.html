@@ -1,48 +1,249 @@
 <header>
-    <app-header></app-header>
+  <app-header></app-header>
 </header>
 <nav class="outLine">
-    <aside>
-        <app-side-bar></app-side-bar>
-    </aside>
-    <main>
-        <nav class="userBox">
-            <nav class="tableTitle">
-                <nav class="left">
-                    <span class="titleText">ประเมินผลงาน</span>
-                </nav>
-                <!-- <nav class="right">
-                    <nav class="fillter">
-                        <select (change)="FetchEvaluator(0,19)" id="selectTypes" class="search">
-                            <option value="">เลือกประเภทบทความ</option>
-                            <option *ngFor="let item of types" value="{{item.name}}">{{item.name}}</option>
-                        </select>
-                    </nav>
-                </nav>
-                <nav class="right">
-                    <nav class="searchGroup">
-                        <input (change)="Search()" id="search" class="searchBox" type="search"
-                            placeholder="ค้นหาบทความ">
-                        <button (click)="Search()" class="submit" type="button"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </nav>
-                </nav> -->
-            </nav>
-            <nav class="paperList">
-                <nav *ngFor="let item of data;index as i" class="list sticky">
-                    <nav class="absolute top-0 right-0 z-10 flex items-center justify-center gap-2">
-                        <nav class="bg-amber-500 p-2 rounded-md cursor-pointer">certificate ภาษาไทย</nav>
-                        <nav class="bg-orange-500 p-2 rounded-md cursor-pointer">certificate ภาษาอังกฤษ</nav>
-                    </nav>
-                    <nav (click)="Grade(item.noPaper,item.titleNews)" class=" paperDetail">
-                        <span class="listText">ประเภท : {{paper[i].typesNews}}</span>
-                        <span class="listText">บทความโดย {{paper[i].name}}</span>
-                        <nav class="paperName">
-                            <span>{{paper[i].titleNews}}</span>
-                        </nav>
-                    </nav>
-                </nav>
-            </nav>
-        </nav>
-    </main>
+  <aside>
+    <app-side-bar></app-side-bar>
+  </aside>
+  <main class="p-6 bg-gray-50 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">
+          บทความที่ต้องประเมิน
+        </h1>
+        <p class="text-gray-600">
+          รายการบทความที่ได้รับมอบหมายให้คุณประเมิน (เฉพาะส่วนของคุณ)
+        </p>
+      </div>
+
+      <!-- Statistics Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center"
+              >
+                <i class="fas fa-file-alt text-blue-600"></i>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-500">รวมทั้งหมด</p>
+              <p class="text-2xl font-semibold text-gray-900">
+                {{ statistics.total }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center"
+              >
+                <i class="fas fa-clock text-orange-600"></i>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-500">รอการประเมิน</p>
+              <p class="text-2xl font-semibold text-orange-600">
+                {{ statistics.pending }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center"
+              >
+                <i class="fas fa-check text-green-600"></i>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-500">ประเมินแล้ว</p>
+              <p class="text-2xl font-semibold text-green-600">
+                {{ statistics.completed }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="mb-6 flex justify-between items-center">
+        <div class="text-sm text-gray-600">
+          แสดงเฉพาะบทความที่คุณได้รับมอบหมายให้ประเมิน
+        </div>
+        <button
+          (click)="refreshData()"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200"
+        >
+          <i class="fas fa-sync-alt mr-2"></i>
+          รีเฟรช
+        </button>
+      </div>
+
+      <!-- Loading -->
+      <div *ngIf="loading" class="text-center py-8">
+        <div
+          class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"
+        ></div>
+        <p class="mt-2 text-gray-600">กำลังโหลดข้อมูล...</p>
+      </div>
+
+      <!-- No Data -->
+      <div *ngIf="!loading && papers.length === 0" class="text-center py-8">
+        <div class="mx-auto h-12 w-12 text-gray-400 mb-4">
+          <i class="fas fa-file-alt text-4xl"></i>
+        </div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">
+          ไม่มีบทความที่ต้องประเมิน
+        </h3>
+        <p class="text-gray-500">
+          ในขณะนี้ยังไม่มีบทความที่ได้รับมอบหมายให้คุณประเมิน
+        </p>
+      </div>
+
+      <!-- Papers List -->
+      <div *ngIf="!loading && papers.length > 0" class="space-y-4">
+        <div
+          *ngFor="let paper of papers; trackBy: trackByPaper"
+          class="bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200"
+        >
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  {{ paper.titleNews }}
+                </h3>
+                <div class="text-sm text-gray-600 space-y-1">
+                  <p>
+                    <span class="font-medium">ผู้เขียน:</span>
+                    {{ paper.authorName }}
+                  </p>
+                  <p>
+                    <span class="font-medium">ประเภท:</span>
+                    {{ paper.typesNews }}
+                  </p>
+                  <p>
+                    <span class="font-medium">วันที่ส่ง:</span>
+                    {{ formatDate(paper.date) }}
+                  </p>
+                  <p *ngIf="paper.myLastEvaluationDate">
+                    <span class="font-medium">วันที่ประเมิน:</span>
+                    {{ formatDate(paper.myLastEvaluationDate) }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Status Badge -->
+              <div class="ml-4 space-y-2">
+                <span
+                  class="inline-flex px-3 py-1 text-xs font-semibold rounded-full"
+                  [ngClass]="getStatusColorClass(paper.paperStatus)"
+                >
+                  {{ getStatusText(paper.paperStatus) }}
+                </span>
+              </div>
+            </div>
+
+            <!-- My Evaluation Status -->
+            <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+              <div class="flex items-center justify-between">
+                <div class="text-sm">
+                  <span class="font-medium text-gray-700"
+                    >สถานะการประเมินของคุณ:</span
+                  >
+                  <span
+                    class="ml-2"
+                    [ngClass]="getEvaluationStatusColor(paper)"
+                  >
+                    {{ getEvaluationStatusText(paper) }}
+                  </span>
+                </div>
+                <div
+                  *ngIf="paper.myEvaluationCount > 0"
+                  class="text-xs text-gray-500"
+                >
+                  <i class="fas fa-info-circle mr-1"></i>
+                  คุณได้ประเมินบทความนี้แล้ว
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex space-x-3">
+              <button
+                (click)="viewPaper(paper)"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
+              >
+                <i class="fas fa-eye mr-2"></i>
+                ดูบทความ
+              </button>
+
+              <button
+                *ngIf="canEvaluate(paper)"
+                (click)="evaluatePaper(paper)"
+                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200"
+              >
+                <i class="fas fa-clipboard-check mr-2"></i>
+                ประเมิน
+              </button>
+
+              <button
+                *ngIf="paper.myEvaluationCount > 0"
+                (click)="viewMyEvaluation(paper)"
+                class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-200"
+              >
+                <i class="fas fa-history mr-2"></i>
+                ดูการประเมินของฉัน
+              </button>
+
+              <!-- Disabled evaluation button with explanation -->
+              <button
+                *ngIf="!canEvaluate(paper) && paper.myEvaluationCount === 0"
+                disabled
+                class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed"
+                title="บทความนี้ได้รับการตัดสินแล้ว"
+              >
+                <i class="fas fa-ban mr-2"></i>
+                ไม่สามารถประเมินได้
+              </button>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="mt-4 pt-4 border-t border-gray-200">
+              <div
+                class="text-xs text-gray-500 flex items-center justify-between"
+              >
+                <span>
+                  <i class="fas fa-calendar mr-1"></i>
+                  มอบหมายเมื่อ: {{ formatDate(paper.assignedDate) }}
+                </span>
+                <span
+                  *ngIf="paper.myEvaluationCount > 0"
+                  class="text-green-600"
+                >
+                  <i class="fas fa-check-circle mr-1"></i>
+                  ประเมินเสร็จสิ้น
+                </span>
+                <span
+                  *ngIf="paper.myEvaluationCount === 0"
+                  class="text-orange-600"
+                >
+                  <i class="fas fa-clock mr-1"></i>
+                  รอการประเมิน
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </nav>
